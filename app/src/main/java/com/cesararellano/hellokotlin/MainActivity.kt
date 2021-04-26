@@ -7,7 +7,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        variablesConstantes()
+        // Lección 1: variablesConstantes()
+        // Lección 2: tiposDeDatos()
+        // Lección 3 :
+
+
     }
 
     private fun variablesConstantes() {
@@ -29,5 +33,33 @@ class MainActivity : AppCompatActivity() {
         println(urlApi)
 
     }
+
+    private fun tiposDeDatos() {
+        // String
+        val myString:String = "Hello Kotlin"
+        val myString2:String = "Welcome to Android Studio"
+        val myString3:String = myString + " " + myString2
+        println(myString3)
+
+        // Enteros (Byte, Short, Int, Long)
+        val myInt:Int = 1
+        val myInt2:Int = 2
+        val myInt3:Int = myInt + myInt2
+        println(myInt3)
+
+        // Decimales (Float, Double)
+        val myDouble: Double = 5.9
+        val myDouble2: Double = 2.8
+        val myDouble3: Double = myDouble + myDouble2
+        println(myDouble3)
+
+        // Boolean (Bool)
+        val myBool: Boolean = true
+        val myBool2: Boolean = false
+        val myBool3: Boolean = myBool && myBool2
+
+        println(myBool3)
+    }
+
 
 }
