@@ -9,9 +9,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         // Lección 1: variablesConstantes()
         // Lección 2: tiposDeDatos()
-        // Lección 3 : sentenciaIf()
-        // Lección 4:
-        setenciaWhen()
+        // Lección 3: sentenciaIf()
+        // Lección 4: setenciaWhen()
+        // Lección 5:
+        arrays()
     }
 
     private fun variablesConstantes() {
@@ -107,7 +108,39 @@ class MainActivity : AppCompatActivity() {
                 println("Esto no es normal viejo D:")
             }
         }
+    }
 
+    fun arrays() {
+        val name = "Brais"
+        val surname = "Moure"
+        val company = "MoureDev"
+        val age = "32"
+
+        // Creación de un Array
+        val myArray: ArrayList<String> = arrayListOf<String>()
+
+        // Añadir datos de uno en uno o todos
+        myArray.add(name)
+        myArray.addAll(listOf(name, surname, company, age))
+        println(myArray)
+        println(myArray[myArray.size - 1])
+
+        // Eliminar elementos en un arreglo
+        myArray.removeAt(myArray.size - 1)
+        println(myArray[myArray.size - 1])
+
+        // Recorrer arreglo
+        myArray.forEach {
+            println(it);
+        }
+
+        println(myArray.size)
+        myArray.clear()
+        println(myArray.count())
+        // myArray.first()
+        // myArray.last()
+        // myArray.sort()
+        println(myArray)
     }
 
 }
