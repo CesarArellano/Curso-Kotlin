@@ -9,8 +9,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         // Lección 1: variablesConstantes()
         // Lección 2: tiposDeDatos()
-        // Lección 3 :
-        sentenciaIf()
+        // Lección 3 : sentenciaIf()
+        // Lección 4:
+        setenciaWhen()
     }
 
     private fun variablesConstantes() {
@@ -68,6 +69,43 @@ class MainActivity : AppCompatActivity() {
             println("$myNumber es igual que 10")
         } else {
             println("$myNumber es mayor que 10")
+        }
+    }
+
+    // When es como Switch
+    fun setenciaWhen() {
+        // When con String
+        val country = "México"
+
+        when (country) {
+            "España", "México", "Perú", "Argentina" -> {
+                println("El idioma es español")
+            } "EU" -> {
+                println("Hello United States")
+            } "Canadá" -> {
+                println("Hello Canada")
+            } else -> {
+                println("No sé de donde eres bro")
+            }
+        }
+
+        // When con Int
+        val age = 19
+
+        when(age) {
+            0, 1, 2 -> {
+                println("Eres un bebé")
+            } in 3 .. 10 -> {
+                println("Eres un niño")
+            } in 11 .. 17 -> {
+                println("Eres un adolescente")
+            } in 18 .. 69 -> {
+                println("Eres un adulto")
+            } in 78 .. 9 -> {
+                println("Eres anciano")
+            } else ->{
+                println("Esto no es normal viejo D:")
+            }
         }
 
     }
