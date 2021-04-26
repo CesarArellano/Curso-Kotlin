@@ -11,8 +11,6 @@ class MainActivity : AppCompatActivity() {
         // Lección 2: tiposDeDatos()
         // Lección 3 :
         sentenciaIf()
-
-
     }
 
     private fun variablesConstantes() {
@@ -63,7 +61,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun sentenciaIf() {
-        val myNumber = 3
+        val myNumber = 19
+        if (myNumber < 10) {
+            println("$myNumber es menor que 10")
+        } else if(myNumber == 10) {
+            println("$myNumber es igual que 10")
+        } else {
+            println("$myNumber es mayor que 10")
+        }
+
     }
 
 }
