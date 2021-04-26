@@ -10,6 +10,7 @@ class MainActivity : AppCompatActivity() {
         // Lección 1: variablesConstantes()
         // Lección 2: tiposDeDatos()
         // Lección 3 :
+        sentenciaIf()
 
 
     }
@@ -61,5 +62,8 @@ class MainActivity : AppCompatActivity() {
         println(myBool3)
     }
 
+    private fun sentenciaIf() {
+        val myNumber = 3
+    }
 
 }
