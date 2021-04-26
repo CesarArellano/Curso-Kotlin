@@ -21,6 +21,13 @@ class MainActivity : AppCompatActivity() {
 
         println(myFirstVariable)
         println(myFirstNumber)
+
+
+        // Constantes
+
+        val urlApi = "https://helloworld.com"
+        println(urlApi)
+
     }
 
 }
