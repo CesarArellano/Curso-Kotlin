@@ -14,8 +14,11 @@ class MainActivity : AppCompatActivity() {
         // Lección 5: arrays()
         // Lección 6 maps() // Similar a los diccionarios (Objetos literales)
         // Lección 7: loops()
-        // Lección 8:
-        nullSafety()
+        // Lección 8: nullSafety()
+        // Lección 9:
+        funciones(name = "Cesar", age = 21);
+        val sum = suma(num1 = 10, num2 = 203)
+        println(sum)
     }
 
     private fun variablesConstantes() {
@@ -228,5 +231,13 @@ class MainActivity : AppCompatActivity() {
         } ?: run {
             println(mySafetyString)
         }
+    }
+
+    fun funciones(name: String, age: Int) {
+        println("Hola, mi nombre es: $name y tengo $age años")
+    }
+
+    fun suma(num1: Int, num2: Int): Int {
+        return num1 + num2
     }
 }
