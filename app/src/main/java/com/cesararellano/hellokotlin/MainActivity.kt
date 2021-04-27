@@ -11,8 +11,9 @@ class MainActivity : AppCompatActivity() {
         // Lección 2: tiposDeDatos()
         // Lección 3: sentenciaIf()
         // Lección 4: setenciaWhen()
-        // Lección 5:
-        arrays()
+        // Lección 5: arrays()
+        // Lección 6
+        maps() // Similar a los diccionarios (Objetos literales)
     }
 
     private fun variablesConstantes() {
@@ -143,4 +144,24 @@ class MainActivity : AppCompatActivity() {
         println(myArray)
     }
 
+    fun maps() {
+        var myMap: Map<String, String> = mapOf();
+        println(myMap)
+
+        // Añadir elementos
+        // Mapa no mutable myMap = mapOf("nombre" to "César", "edad" to "21", "desarrollador" to "true")
+        myMap = mutableMapOf("nombre" to "César", "edad" to "21", "desarrollador" to "true")
+        myMap["apellido"] = "Arellano"
+        myMap.put("relacion", "true")
+        println(myMap)
+        // Actualizando un dato
+        myMap.put("nombre", "Mauricio")
+        println(myMap["nombre"])
+
+        // Eliminar dato
+        myMap.remove("nombre")
+        println(myMap["nombre"])
+
+
+    }
 }
