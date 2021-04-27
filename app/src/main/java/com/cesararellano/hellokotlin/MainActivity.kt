@@ -16,9 +16,13 @@ class MainActivity : AppCompatActivity() {
         // Lección 7: loops()
         // Lección 8: nullSafety()
         // Lección 9:
-        funciones(name = "Cesar", age = 21);
+        /* funciones(name = "Cesar", age = 21);
         val sum = suma(num1 = 10, num2 = 203)
         println(sum)
+         */
+        // Lección 10:
+        classes()
+
     }
 
     private fun variablesConstantes() {
@@ -239,5 +243,16 @@ class MainActivity : AppCompatActivity() {
 
     fun suma(num1: Int, num2: Int): Int {
         return num1 + num2
+    }
+
+    fun classes() {
+        val cesar = Programmer(name = "César", age = 30, arrayOf(Programmer.Language.KOTLIN))
+        println(cesar.name)
+        cesar.age = 21
+        println(cesar.age)
+        val jaqui = Programmer(name = "Jaqui", age = 22, arrayOf(Programmer.Language.JAVASCRIPT), arrayOf(cesar))
+        jaqui.code()
+        cesar.code()
+        println("${jaqui.friends?.first()?.name} es amigo de ${ jaqui.name }")
     }
 }
