@@ -12,8 +12,9 @@ class MainActivity : AppCompatActivity() {
         // Lección 3: sentenciaIf()
         // Lección 4: setenciaWhen()
         // Lección 5: arrays()
-        // Lección 6
-        maps() // Similar a los diccionarios (Objetos literales)
+        // Lección 6 maps() // Similar a los diccionarios (Objetos literales)
+        // Lección 7:
+        loops()
     }
 
     private fun variablesConstantes() {
@@ -161,7 +162,44 @@ class MainActivity : AppCompatActivity() {
         // Eliminar dato
         myMap.remove("nombre")
         println(myMap["nombre"])
+    }
 
+    private  fun loops() {
+        // Bucles
+        val myArray: List<String> = listOf("Hola", "Bienvenido a Android Studio", "César")
+        val myMap: MutableMap<String, Int> = mutableMapOf("César" to 1, "Pedro" to 2, "Ruls" to 3)
 
+        // For
+        for (myString in myArray) {
+            println(myString)
+        }
+
+        for (myElement in myMap) {
+            println("${myElement.key} - ${myElement.value}")
+        }
+
+        for (x: Int in 1..10) {
+            println(x)
+        }
+
+        for (x: Int in 0 until 10) {
+            println(x)
+        }
+
+        for (x: Int in 0..10 step 2) {
+            println(x)
+        }
+
+        val myNumericArray: IntRange = (0..20)
+        for( myNum: Int in myNumericArray) {
+            println(myNum)
+        }
+
+        // While
+        var x = 0;
+        while (x < 10) {
+            println(x)
+            x++;
+        }
     }
 }
