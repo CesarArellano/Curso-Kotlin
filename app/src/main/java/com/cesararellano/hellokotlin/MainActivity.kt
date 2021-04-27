@@ -13,8 +13,9 @@ class MainActivity : AppCompatActivity() {
         // Lección 4: setenciaWhen()
         // Lección 5: arrays()
         // Lección 6 maps() // Similar a los diccionarios (Objetos literales)
-        // Lección 7:
-        loops()
+        // Lección 7: loops()
+        // Lección 8:
+        nullSafety()
     }
 
     private fun variablesConstantes() {
@@ -200,6 +201,32 @@ class MainActivity : AppCompatActivity() {
         while (x < 10) {
             println(x)
             x++;
+        }
+    }
+    fun nullSafety() {
+        var myString = "RayWayDay"
+        // myString = null Esto da error
+        println(myString)
+
+        // Variable null safety
+        var mySafetyString:String? = "RayWayDay null safety"
+        mySafetyString = null;
+        println(mySafetyString)
+
+        mySafetyString = "Mauricio";
+        println(mySafetyString)
+
+        if (mySafetyString != null) {
+            // println(mySafetyString!!) // Aseguro que nunca será nula, a discreción del programador
+            println(mySafetyString)
+        }
+
+        //  Safe call
+        println(mySafetyString?.length) // ? si es null, no ejecuta esta instrucción
+        mySafetyString?.let {
+            println(it!!)
+        } ?: run {
+            println(mySafetyString)
         }
     }
 }
