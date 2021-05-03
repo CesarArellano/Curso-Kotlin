@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     }
 
     private fun speak() {
-        var message: String = binding.txtStatus.text.toString()
+        var message: String = binding.editMessage.text.toString()
         tts!!.speak(message, TextToSpeech.QUEUE_FLUSH, null, "")
     }
 
