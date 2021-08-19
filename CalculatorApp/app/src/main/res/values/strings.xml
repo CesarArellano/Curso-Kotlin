@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Calculator App</string>
-    <string name="firstButton">Dale tap</string>
+    <string name="incrementButton">Incrementa</string>
+    <string name="decrementButton">Decrementa</string>
+    <string name="resetButton">Reiniciar</string>
+    <string name="display">0</string>
 </resources>
