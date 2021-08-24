@@ -12,10 +12,8 @@ import android.widget.TextView
 class MainActivity : AppCompatActivity() {
     private lateinit var display: TextView
     private var usuarioEstaEscribiendoNumero = false
-    private var operandoEnEspera = 0 // Primer operando
-    private var secondOperando = 0
-    private var operacionEnEsperaDeOperando = ""
     private var resultado = 0
+    private val modeloCalculadora = ModeloCalculadora()
     /*
     private lateinit var incrementButton: Button
     private lateinit var resetButton: Button
@@ -59,31 +57,11 @@ class MainActivity : AppCompatActivity() {
     fun operacionPresionado(botton: View) {
         val operacionPresionada = (botton as Button).text.toString()
         if( usuarioEstaEscribiendoNumero ) {
-            secondOperando = display.text.toString().toInt()
+            modeloCalculadora.setOperando( display.text.toString().toInt() )
             usuarioEstaEscribiendoNumero = false
         }
-        resultado = ejecutaOperacion(operacionPresionada)
+        resultado = modeloCalculadora.ejecutaOperacion(operacionPresionada)
         display.text = resultado.toString()
-    }
-
-    private fun ejecutaOperacion(operacion: String): Int {
-        ejecutaOperacionEnEspera()
-        operacionEnEsperaDeOperando = operacion
-        operandoEnEspera = secondOperando
-        return secondOperando
-    }
-
-    private fun ejecutaOperacionEnEspera() {
-        when(operacionEnEsperaDeOperando) {
-            "+" -> secondOperando += operandoEnEspera
-            "-" -> secondOperando = operandoEnEspera - secondOperando
-            "*" -> secondOperando *= operandoEnEspera
-            "/" -> {
-                if (secondOperando != 0) {
-                    secondOperando = operandoEnEspera / secondOperando
-                }
-            }
-        }
     }
 
 }
