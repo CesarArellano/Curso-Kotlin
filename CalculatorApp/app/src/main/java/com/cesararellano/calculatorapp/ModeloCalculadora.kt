@@ -5,6 +5,12 @@ class ModeloCalculadora {
     private var operando = 0
     private var operacionEnEsperaDeOperando = ""
 
+    fun setZero() {
+        operandoEnEspera = 0
+        operando = 0
+        operacionEnEsperaDeOperando = ""
+    }
+
     fun setOperando(unOperando: Int) {
         operando = unOperando
     }
@@ -28,4 +34,5 @@ class ModeloCalculadora {
             }
         }
     }
+
 }

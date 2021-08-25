@@ -1,5 +1,6 @@
 package com.cesararellano.calculatorapp
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 // import android.util.Log
@@ -45,13 +46,53 @@ class MainActivity : AppCompatActivity() {
     @Suppress( "UNUSED_PARAMETER")
     fun onPressedButton(button: View) {
         val digito = (button as Button).text
-        if(usuarioEstaEscribiendoNumero) {
-            display.append(digito)
+        if( usuarioEstaEscribiendoNumero ) {
+            if(display.text.toString() == "0") {
+                display.text = digito
+            } else {
+                display.append(digito)
+            }
+
         } else {
             display.text = digito
             usuarioEstaEscribiendoNumero = true
         }
 
+    }
+
+    @Suppress( "UNUSED_PARAMETER")
+    fun addDecimalPoint(botton: View) {
+        if ( display.text.contains(".") ) return
+
+        if ( display.text.startsWith("0" )) {
+            display.text = "0."
+        } else {
+            display.text = ( display.text.toString() + "." )
+        }
+    }
+
+    @Suppress( "UNUSED_PARAMETER")
+    fun changeNegativePositive(botton: View) {
+        if (display.text.startsWith("-")) {
+            display.text = display.text.toString().replace("-", "")
+        } else {
+            display.text = ( "-" + display.text.toString() )
+        }
+    }
+
+    @Suppress( "UNUSED_PARAMETER")
+    fun deleteLastEntry(botton: View) {
+        if ( display.text.toString().replace("-", "").length > 1 ) {
+            display.text = display.text.substring(0, display.text.length - 1)
+        } else {
+            display.text = "0"
+        }
+    }
+
+    @Suppress( "UNUSED_PARAMETER")
+    fun resetAll(botton: View) {
+        display.text = "0"
+        modeloCalculadora.setZero()
     }
 
     fun operacionPresionado(botton: View) {
