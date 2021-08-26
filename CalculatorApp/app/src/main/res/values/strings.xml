@@ -16,4 +16,21 @@
     <string name="botonDivision">/</string>
     <string name="botonIgual">=</string>
     <string name="display">0</string>
+    <string name="botonMC">MC</string>
+    <string name="BotonMemMas">Mem +</string>
+    <string name="botonMemMenos">Mem -</string>
+    <string name="botonInverso">1/X</string>
+    <string name="botonStore">Store</string>
+    <string name="botonRecall">Recall</string>
+    <string name="botonXn">xⁿ</string>
+    <string name="boton10n">10ⁿ</string>
+    <string name="botonSin">sin</string>
+    <string name="botonCos">cos</string>
+    <string name="botonRaizn">ⁿ√</string>
+    <string name="botonRaiz">√</string>
+    <string name="botonCE">CE</string>
+    <string name="botonBorrarUltimoCaracter">⌫</string>
+    <string name="botonCambioSigno">+/-</string>
+    <string name="botonPi">𝛑</string>
+    <string name="botonPuntoDecimal">.</string>
 </resources>
