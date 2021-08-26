@@ -3,6 +3,7 @@ package com.cesararellano.calculatorapp
 import kotlin.math.*
 
 class ModeloCalculadora {
+    private var operadorEnMemoria = "0"
     private var operandoEnEspera:String = "0" // Segundo operador
     private var operando:String = "0" // Primer Operador
     private var operacionEnEsperaDeOperando = ""
@@ -21,19 +22,23 @@ class ModeloCalculadora {
         resultado = "0"
     }
 
-    fun agregarNumero(number: String): String {
-        if (resultado == "0") {
-            resultado = number
-            return resultado
+    fun agregarNumero(number: String): Array<String> {
+        var error = "false"
+
+        when(resultado) {
+            "0" -> resultado = number
+            "-0" -> resultado = "-$number"
+            else -> {
+                resultado += number
+                if( number == "𝛑") {
+                    error = "true"
+                    resultado = "0"
+                }
+
+            }
         }
 
-        if (resultado == "-0") {
-            resultado = "-$number"
-            return resultado
-        }
-
-        resultado += number
-        return resultado
+        return arrayOf(resultado, error)
     }
 
     fun agregarPuntoDecimal():String {
@@ -66,24 +71,42 @@ class ModeloCalculadora {
         return resultado
     }
 
-    fun operadorSeleccionado(nuevoOperador: String):Array<String> {
+    fun operadorSeleccionado(nuevoOperador: String, operacionActual:String, operacionUnOperando: Boolean):Array<String> {
         val textoDisplay2:String
 
-        if( operacionEnEsperaDeOperando == "" ) {
+        if(operacionUnOperando) {
             operacionEnEsperaDeOperando = nuevoOperador
             operando = resultado
-            resultado = "0"
-            textoDisplay2 = "$operando $nuevoOperador"
+            textoDisplay2 = ""
         } else {
-            textoDisplay2 = "$operando $operacionEnEsperaDeOperando $resultado"
+            if( operacionEnEsperaDeOperando == "") {
+                operacionEnEsperaDeOperando = nuevoOperador
+                operando = resultado
+                textoDisplay2 = "$operando $nuevoOperador"
+            } else {
+                val operacionActualSplit = operacionActual.split(" ")
+                println(operacionActualSplit)
+                if( operacionActualSplit.size == 2) {
+                    textoDisplay2 = "$operando $operacionEnEsperaDeOperando $resultado"
+                } else {
+                    operando = operacionActualSplit[0]
+                    resultado = operacionActualSplit[2]
+                    val resultadoFinal = this.calcularResultado()[0]
+                    operacionEnEsperaDeOperando = nuevoOperador
+                    textoDisplay2 = "$resultadoFinal $nuevoOperador"
+                }
+            }
         }
 
-        return arrayOf(resultado, textoDisplay2)
+
+        resultado = "0"
+        return arrayOf("0", textoDisplay2)
     }
 
-    fun calcularResultado(): String {
-        val number1: Double = operando.toDouble()
-        val number2: Double = resultado.toDouble()
+    fun calcularResultado(): Array<String> {
+        var error = "false"
+        val number1: Double = if (operando == "𝛑") 3.1416 else operando.toDouble()
+        val number2: Double = if (operando == "𝛑") 3.1416 else resultado.toDouble()
 
         when (operacionEnEsperaDeOperando) {
             "+" -> resultado = "${ number1 + number2 }"
@@ -92,6 +115,8 @@ class ModeloCalculadora {
             "/" -> {
                 if (number2 != 0.0) {
                     resultado = "${ number1 / number2 }"
+                } else {
+                    error = "true"
                 }
             }
             "xⁿ" -> resultado = "${ number1.pow(number2) }"
@@ -115,7 +140,7 @@ class ModeloCalculadora {
             resultado = resultado.substring(0, resultado.length - 2)
         }
 
-        return resultado
+        return arrayOf(resultado, error)
     }
 
     fun operacionEnMemoria(operacion:String, numeroEnDisplay:String = "" ):String {
