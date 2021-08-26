@@ -49,23 +49,29 @@ class MainActivity : AppCompatActivity() {
     fun resetearCtrl(boton: View) {
         modeloCalculadora.resetear()
         display.text = "0"
+        display2.text = "|"
     }
 
     fun operadorSeleccionadoCtrl(boton: View) {
         val operador = (boton as Button).text.toString()
+        val myArray:Array<String>
         if (!operador.matches( Regex("[+-/*]")) && operador != "xⁿ" && operador != "ⁿ√") {
             Log.d(TAG, "if")
             modeloCalculadora.operadorSeleccionado(operador)
             display.text = modeloCalculadora.calcularResultado()
+            display2.text = "|"
         } else {
             Log.d(TAG, "else")
-            display.text = modeloCalculadora.operadorSeleccionado(operador)
+            myArray = modeloCalculadora.operadorSeleccionado(operador)
+            display.text = myArray[0]
+            display2.text = myArray[1]
         }
     }
 
     @Suppress("UNUSED_PARAMETER")
     fun calcularResultadoCtrl(boton: View) {
         display.text = modeloCalculadora.calcularResultado()
+        display2.text = "|"
     }
 
     @Suppress( "UNUSED_PARAMETER")
@@ -78,6 +84,9 @@ class MainActivity : AppCompatActivity() {
         } else {
             val numeroEnDisplay = display.text.toString()
             modeloCalculadora.operacionEnMemoria(operacion, numeroEnDisplay)
+            if(operacion == "MC") {
+                display2.text = "|"
+            }
         }
 
     }

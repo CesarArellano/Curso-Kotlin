@@ -66,11 +66,19 @@ class ModeloCalculadora {
         return resultado
     }
 
-    fun operadorSeleccionado(nuevoOperador: String):String {
-        operacionEnEsperaDeOperando = nuevoOperador
-        operando= resultado
-        resultado = "0"
-        return resultado
+    fun operadorSeleccionado(nuevoOperador: String):Array<String> {
+        val textoDisplay2:String
+
+        if( operacionEnEsperaDeOperando == "" ) {
+            operacionEnEsperaDeOperando = nuevoOperador
+            operando = resultado
+            resultado = "0"
+            textoDisplay2 = "$operando $nuevoOperador"
+        } else {
+            textoDisplay2 = "$operando $operacionEnEsperaDeOperando $resultado"
+        }
+
+        return arrayOf(resultado, textoDisplay2)
     }
 
     fun calcularResultado(): String {
@@ -96,6 +104,7 @@ class ModeloCalculadora {
             else -> resultado = "0"
         }
 
+        operacionEnEsperaDeOperando = ""
         operandoEnEspera = resultado
 
         if(resultado.length > 10) {
