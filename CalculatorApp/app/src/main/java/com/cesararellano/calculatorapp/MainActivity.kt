@@ -5,9 +5,9 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
-// import android.util.Log
+import android.util.Log
 
-//private const val TAG = "MainActivity"
+private const val TAG = "MainActivity"
 
 class MainActivity : AppCompatActivity() {
 
@@ -51,11 +51,18 @@ class MainActivity : AppCompatActivity() {
 
     fun operadorSeleccionadoCtrl(boton: View) {
         val operador = (boton as Button).text.toString()
-        display.text = modeloCalculadora.operadorSeleccionado(operador)
+        if (!operador.matches( Regex("[+-/*]")) && operador != "xⁿ" && operador != "ⁿ√") {
+            Log.d(TAG, "if")
+            modeloCalculadora.operadorSeleccionado(operador)
+            display.text = modeloCalculadora.calcularResultado()
+        } else {
+            Log.d(TAG, "else")
+            display.text = modeloCalculadora.operadorSeleccionado(operador)
+        }
     }
 
     @Suppress("UNUSED_PARAMETER")
-    fun calcularResultadoCtrl(botton: View) {
+    fun calcularResultadoCtrl(boton: View) {
         display.text = modeloCalculadora.calcularResultado()
     }
 

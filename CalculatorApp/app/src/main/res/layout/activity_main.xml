@@ -29,7 +29,6 @@
         android:background="#E3E3E3"
         app:layout_constraintBottom_toTopOf="@+id/BotonMemMas"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints" />
 
@@ -71,6 +70,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#009688"
+        android:onClick="operadorSeleccionadoCtrl"
         android:text="@string/botonInverso"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -104,6 +104,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#4CAF50"
+        android:onClick="operadorSeleccionadoCtrl"
         android:text="@string/botonXn"
         android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/boton10n"
@@ -115,6 +116,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#4CAF50"
+        android:onClick="operadorSeleccionadoCtrl"
         android:text="@string/boton10n"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -126,28 +128,33 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#4CAF50"
+        android:onClick="operadorSeleccionadoCtrl"
         android:text="@string/botonSin"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/botonCE"
         app:layout_constraintEnd_toStartOf="@+id/botonCos"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="UsingOnClickInXml" />
 
     <Button
         android:id="@+id/botonCos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#4CAF50"
+        android:onClick="operadorSeleccionadoCtrl"
         android:text="@string/botonCos"
         android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/botonRaizn"
         app:layout_constraintStart_toEndOf="@+id/botonSin"
-        app:layout_constraintTop_toTopOf="@+id/botonSin" />
+        app:layout_constraintTop_toTopOf="@+id/botonSin"
+        tools:ignore="UsingOnClickInXml" />
 
     <Button
         android:id="@+id/botonRaizn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#4CAF50"
+        android:onClick="operadorSeleccionadoCtrl"
         android:text="@string/botonRaizn"
         android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/botonRaiz"
@@ -159,6 +166,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#4CAF50"
+        android:onClick="operadorSeleccionadoCtrl"
         android:text="@string/botonRaiz"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
