@@ -5,13 +5,19 @@ import kotlin.math.*
 class ModeloCalculadora {
     private var operandoEnEspera:String = "0" // Segundo operador
     private var operando:String = "0" // Primer Operador
-    private var operacionEnEsperaDeOperando = "+"
+    private var operacionEnEsperaDeOperando = ""
     private var resultado:String = "0"
 
     fun resetear() {
         operandoEnEspera = "0"
         operando = "0"
-        operacionEnEsperaDeOperando = "+"
+        operacionEnEsperaDeOperando = ""
+        resultado = "0"
+    }
+
+    private fun limpiarMemoria() {
+        operandoEnEspera = "0"
+        operando = "0"
         resultado = "0"
     }
 
@@ -25,6 +31,7 @@ class ModeloCalculadora {
             resultado = "-$number"
             return resultado
         }
+
         resultado += number
         return resultado
     }
@@ -86,6 +93,7 @@ class ModeloCalculadora {
             "√" -> resultado = "${ sqrt( number1 ) }"
             "10ⁿ"-> resultado = "${10.0.pow(number1)}"
             "1/X" -> resultado = "${ 1/number1 }"
+            else -> resultado = "0"
         }
 
         operandoEnEspera = resultado
@@ -101,4 +109,14 @@ class ModeloCalculadora {
         return resultado
     }
 
+    fun operacionEnMemoria(operacion:String, numeroEnDisplay:String = "" ):String {
+        when(operacion) {
+            "Store" -> operando= numeroEnDisplay
+            "Recall" -> return operando
+            "MC" -> this.limpiarMemoria()
+            "Mem+" -> operando = "${ operando.toDouble() + numeroEnDisplay.toDouble() } "
+            "Mem-" -> operando = "${ operando.toDouble() - numeroEnDisplay.toDouble() } "
+        }
+        return numeroEnDisplay
+    }
 }

@@ -12,13 +12,15 @@ private const val TAG = "MainActivity"
 class MainActivity : AppCompatActivity() {
 
     private lateinit var display: TextView
+    private lateinit var display2: TextView
     private val modeloCalculadora = ModeloCalculadora()
 
     override fun onCreate( savedInstanceState: Bundle? ) {
         super.onCreate(savedInstanceState)
         setContentView( R.layout.activity_main )
 
-        display = findViewById( R.id.display)
+        display = findViewById( R.id.display )
+        display2 = findViewById( R.id.display2 )
     }
 
     @Suppress( "UNUSED_PARAMETER")
@@ -65,5 +67,20 @@ class MainActivity : AppCompatActivity() {
     fun calcularResultadoCtrl(boton: View) {
         display.text = modeloCalculadora.calcularResultado()
     }
+
+    @Suppress( "UNUSED_PARAMETER")
+    fun operacionEnMemoriaCtrl(boton: View) {
+        val operacion = (boton as Button).text.toString()
+        val opcionRecall = "Recall"
+
+        if( operacion == opcionRecall) {
+            display.text = modeloCalculadora.operacionEnMemoria(opcionRecall)
+        } else {
+            val numeroEnDisplay = display.text.toString()
+            modeloCalculadora.operacionEnMemoria(operacion, numeroEnDisplay)
+        }
+
+    }
+
 
 }

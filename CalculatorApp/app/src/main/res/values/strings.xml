@@ -16,9 +16,10 @@
     <string name="botonDivision">/</string>
     <string name="botonIgual">=</string>
     <string name="display">0</string>
+    <string name="display2">|</string>
     <string name="botonMC">MC</string>
-    <string name="BotonMemMas">Mem +</string>
-    <string name="botonMemMenos">Mem -</string>
+    <string name="BotonMemMas">Mem+</string>
+    <string name="botonMemMenos">Mem-</string>
     <string name="botonInverso">1/X</string>
     <string name="botonStore">Store</string>
     <string name="botonRecall">Recall</string>

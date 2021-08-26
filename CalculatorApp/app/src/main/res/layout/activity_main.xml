@@ -7,16 +7,29 @@
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/display2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="25dp"
+        android:text="@string/display2"
+        android:textColor="#CC000000"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
         android:id="@+id/display"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
+        android:layout_marginBottom="20dp"
         android:text="@string/display"
         android:textColor="#CC000000"
         android:textSize="60sp"
         app:layout_constraintBottom_toTopOf="@+id/view"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.91"
+        app:layout_constraintHorizontal_bias="0.901"
         app:layout_constraintStart_toStartOf="parent" />
 
     <View
@@ -37,33 +50,39 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#FF7B00"
+        android:onClick="operacionEnMemoriaCtrl"
         android:text="@string/botonMC"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/botonStore"
         app:layout_constraintEnd_toStartOf="@+id/BotonMemMas"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="UsingOnClickInXml" />
 
     <Button
         android:id="@+id/BotonMemMas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#FF7B00"
+        android:onClick="operacionEnMemoriaCtrl"
         android:text="@string/BotonMemMas"
         android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/botonMemMenos"
         app:layout_constraintStart_toEndOf="@+id/botonMC"
-        app:layout_constraintTop_toTopOf="@+id/botonMC" />
+        app:layout_constraintTop_toTopOf="@+id/botonMC"
+        tools:ignore="UsingOnClickInXml"/>
 
     <Button
         android:id="@+id/botonMemMenos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#FF7B00"
+        android:onClick="operacionEnMemoriaCtrl"
         android:text="@string/botonMemMenos"
         android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/botonInverso"
         app:layout_constraintStart_toEndOf="@+id/BotonMemMas"
-        app:layout_constraintTop_toTopOf="@+id/BotonMemMas" />
+        app:layout_constraintTop_toTopOf="@+id/BotonMemMas"
+        tools:ignore="UsingOnClickInXml" />
 
     <Button
         android:id="@+id/botonInverso"
@@ -75,29 +94,34 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/botonMemMenos"
-        app:layout_constraintTop_toTopOf="@+id/botonMemMenos" />
+        app:layout_constraintTop_toTopOf="@+id/botonMemMenos"
+        tools:ignore="UsingOnClickInXml" />
 
     <Button
         android:id="@+id/botonStore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#9C27B0"
+        android:onClick="operacionEnMemoriaCtrl"
         android:text="@string/botonStore"
         android:textSize="15sp"
         app:layout_constraintBottom_toTopOf="@+id/botonSin"
         app:layout_constraintEnd_toStartOf="@+id/botonRecall"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="UsingOnClickInXml" />
 
     <Button
         android:id="@+id/botonRecall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#9C27B0"
+        android:onClick="operacionEnMemoriaCtrl"
         android:text="@string/botonRecall"
         android:textSize="14sp"
         app:layout_constraintEnd_toStartOf="@+id/botonXn"
         app:layout_constraintStart_toEndOf="@+id/botonStore"
-        app:layout_constraintTop_toTopOf="@+id/botonStore" />
+        app:layout_constraintTop_toTopOf="@+id/botonStore"
+        tools:ignore="UsingOnClickInXml" />
 
     <Button
         android:id="@+id/botonXn"
@@ -109,7 +133,8 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/boton10n"
         app:layout_constraintStart_toEndOf="@+id/botonRecall"
-        app:layout_constraintTop_toTopOf="@+id/botonRecall" />
+        app:layout_constraintTop_toTopOf="@+id/botonRecall"
+        tools:ignore="UsingOnClickInXml" />
 
     <Button
         android:id="@+id/boton10n"
@@ -121,7 +146,8 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/botonXn"
-        app:layout_constraintTop_toTopOf="@+id/botonXn" />
+        app:layout_constraintTop_toTopOf="@+id/botonXn"
+        tools:ignore="UsingOnClickInXml" />
 
     <Button
         android:id="@+id/botonSin"
@@ -159,7 +185,8 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/botonRaiz"
         app:layout_constraintStart_toEndOf="@+id/botonCos"
-        app:layout_constraintTop_toTopOf="@+id/botonCos" />
+        app:layout_constraintTop_toTopOf="@+id/botonCos"
+        tools:ignore="UsingOnClickInXml" />
 
     <Button
         android:id="@+id/botonRaiz"
@@ -171,7 +198,8 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/botonRaizn"
-        app:layout_constraintTop_toTopOf="@+id/botonRaizn" />
+        app:layout_constraintTop_toTopOf="@+id/botonRaizn"
+        tools:ignore="UsingOnClickInXml" />
 
     <Button
         android:id="@+id/botonCE"
