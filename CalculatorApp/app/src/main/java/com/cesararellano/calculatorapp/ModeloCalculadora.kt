@@ -1,8 +1,8 @@
 package com.cesararellano.calculatorapp
 
 class ModeloCalculadora {
-    private var operandoEnEspera:String = "0" // Primer operando
-    private var operando:String = "0"
+    private var operandoEnEspera:String = "0" // Segundo operador
+    private var operando:String = "0" // Primer Operador
     private var operacionEnEsperaDeOperando = "+"
     private var resultado:String = "0"
 
