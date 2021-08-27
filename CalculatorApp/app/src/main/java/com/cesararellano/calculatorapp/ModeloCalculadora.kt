@@ -3,24 +3,26 @@ package com.cesararellano.calculatorapp
 import kotlin.math.*
 
 class ModeloCalculadora {
+    // Valor Pi extraído de Kotlin.math
     private val numeroPI = PI
+    // Configuracion inicial
+    private var estaEnRadianes = true //
     private var operandoEnMemoria = "0"
-    private var operandoEnEspera:String = "0" // Segundo operador
     private var operando:String = "0" // Primer Operador
+    private var operandoEnEspera:String = "0" // Segundo operador
     private var operacionEnEsperaDeOperando = ""
     private var resultado:String = "0"
-    private var radianes = true
 
     fun getOperandoEnMemoria():String {
         return if(operandoEnMemoria.endsWith(".0")) removerPuntoCero(operandoEnMemoria) else operandoEnMemoria
     }
 
     fun getEstado():Boolean {
-        return this.radianes
+        return this.estaEnRadianes
     }
 
     fun setEstado() {
-        this.radianes = !this.radianes
+        this.estaEnRadianes = !this.estaEnRadianes
     }
 
     fun resetear() {
@@ -142,10 +144,10 @@ class ModeloCalculadora {
                 }
             }
             "sin" ->  {
-                resultado = if(radianes) "${ sin( numero1 ) }" else "${sin( Math.toRadians(numero1))}"
+                resultado = if(estaEnRadianes) "${ sin( numero1 ) }" else "${sin( Math.toRadians(numero1))}"
             }
             "cos" -> {
-                resultado = if(radianes) "${ cos( numero1 ) }" else "${cos( Math.toRadians(numero1))}"
+                resultado = if(estaEnRadianes) "${ cos( numero1 ) }" else "${cos( Math.toRadians(numero1))}"
             }
             "√" -> {
                 if(numero1 >= 0.0) {
@@ -171,7 +173,6 @@ class ModeloCalculadora {
         if(resultado.length > 10) {
             resultado = resultado.substring(0, resultado.length - 10)
         }
-
 
         if (resultado.endsWith(".0")) {
             resultado = removerPuntoCero(resultado)
