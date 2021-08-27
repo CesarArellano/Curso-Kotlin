@@ -6,6 +6,18 @@
     android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/display3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:text="@string/display3"
+        android:textColor="#CC000000"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
         android:id="@+id/display2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

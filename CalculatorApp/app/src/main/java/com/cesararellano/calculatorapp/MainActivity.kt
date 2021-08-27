@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.util.Log
+import android.view.Menu
 import android.widget.Toast
 
 private const val TAG = "MainActivity"
@@ -14,14 +15,21 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var display: TextView
     private lateinit var display2: TextView
+    private lateinit var display3: TextView
     private val modeloCalculadora = ModeloCalculadora()
 
     override fun onCreate( savedInstanceState: Bundle? ) {
         super.onCreate(savedInstanceState)
         setContentView( R.layout.activity_main )
 
-        display = findViewById( R.id.display )
+        display  = findViewById( R.id.display )
         display2 = findViewById( R.id.display2 )
+        display3 = findViewById( R.id.display3 )
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_item, menu)
+        return true
     }
 
     @Suppress( "UNUSED_PARAMETER")
@@ -105,6 +113,9 @@ class MainActivity : AppCompatActivity() {
             modeloCalculadora.operacionEnMemoria(operacion, numeroEnDisplay)
         }
 
+        val operandoEnMemoria = modeloCalculadora.getOperandoEnMemoria()
+        display3.text = ("Mem: $operandoEnMemoria")
+
     }
 
     private fun cambiandoDisplay2() {
@@ -118,6 +129,16 @@ class MainActivity : AppCompatActivity() {
 
     private fun showToast() {
         Toast.makeText(this, "Error", Toast.LENGTH_SHORT ).show()
+    }
+
+    @Suppress("UNUSED_PARAMETER")
+    fun cambiarGradosRadianes(item: android.view.MenuItem) {
+        if( modeloCalculadora.getEstado() ) {
+            supportActionBar!!.title = "Calculator App en Deg"
+        } else {
+            supportActionBar!!.title = "Calculator App en Rads"
+        }
+        modeloCalculadora.setEstado()
     }
 
 }

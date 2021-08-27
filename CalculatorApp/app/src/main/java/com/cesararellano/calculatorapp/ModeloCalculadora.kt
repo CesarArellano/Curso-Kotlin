@@ -8,7 +8,19 @@ class ModeloCalculadora {
     private var operando:String = "0" // Primer Operador
     private var operacionEnEsperaDeOperando = ""
     private var resultado:String = "0"
+    private var radianes = true
     private val numeroPI = PI
+
+    fun getOperandoEnMemoria():String {
+        return if(operandoEnMemoria.endsWith(".0")) removerPuntoCero(operandoEnMemoria) else operandoEnMemoria
+    }
+
+    fun setEstado() {
+        this.radianes = !this.radianes
+    }
+    fun getEstado():Boolean {
+        return this.radianes
+    }
 
     fun resetear() {
         operandoEnEspera = "0"
@@ -110,7 +122,7 @@ class ModeloCalculadora {
         val numero1: Double = if (operando == "𝛑") numeroPI else operando.toDouble()
         val numero2: Double = if (resultado == "𝛑") numeroPI else resultado.toDouble()
         println(numero1)
-
+        println(numero2)
         when (operacionEnEsperaDeOperando) {
             "+" -> resultado = "${ numero1 + numero2 }"
             "-" -> resultado = "${ numero1 - numero2 }"
@@ -123,10 +135,26 @@ class ModeloCalculadora {
                 }
             }
             "xⁿ" -> resultado = "${ numero1.pow(numero2) }"
-            "ⁿ√" -> resultado = "${ numero2.pow(1 / numero1) }"
-            "sin" ->  resultado = "${ sin( numero1 ) }"
-            "cos" ->  resultado = "${ cos( numero1 ) }" //cos( Math.toRadians(numero1) in degress
-            "√" -> resultado = "${ sqrt( numero1 ) }"
+            "ⁿ√" -> {
+                if(numero2 >= 0.0) {
+                    resultado = "${numero2.pow(1 / numero1)}"
+                } else {
+                    error = "true"
+                }
+            }
+            "sin" ->  {
+                resultado = if(radianes) "${ sin( numero1 ) }" else "${sin( Math.toRadians(numero1))}"
+            }
+            "cos" -> {
+                resultado = if(radianes) "${ cos( numero1 ) }" else "${cos( Math.toRadians(numero1))}"
+            }
+            "√" -> {
+                if(numero1 >= 0.0) {
+                    resultado = "${sqrt(numero1)}"
+                } else {
+                    error = "true"
+                }
+            }
             "10ⁿ"-> resultado = "${10.0.pow(numero1)}"
             "1/X" -> {
                 if (numero1 != 0.0) {

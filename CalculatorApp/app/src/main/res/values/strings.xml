@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Calculator App</string>
+    <string name="app_name">Calculator App en Rad</string>
     <string name="botonSiete">7</string>
     <string name="botonOcho">8</string>
     <string name="botonNueve">9</string>
@@ -17,6 +17,7 @@
     <string name="botonIgual">=</string>
     <string name="display">0</string>
     <string name="display2">0</string>
+    <string name="display3">Mem: 0</string>
     <string name="botonMC">MC</string>
     <string name="BotonMemMas">Mem+</string>
     <string name="botonMemMenos">Mem-</string>
@@ -34,4 +35,5 @@
     <string name="botonCambioSigno">+/-</string>
     <string name="botonPi">𝛑</string>
     <string name="botonPuntoDecimal">.</string>
+    <string name="opcionSwitch">Cambiar</string>
 </resources>
