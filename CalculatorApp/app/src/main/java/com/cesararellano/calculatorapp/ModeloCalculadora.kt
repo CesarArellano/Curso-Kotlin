@@ -145,22 +145,31 @@ class ModeloCalculadora {
             resultado = resultado.substring(0, resultado.length - 10)
         }
 
+
         if (resultado.endsWith(".0")) {
-            resultado = resultado.substring(0, resultado.length - 2)
+            resultado = removerPuntoCero(resultado)
         }
 
         return arrayOf(resultado, error)
     }
 
+
     fun operacionEnMemoria(operacion:String, numeroEnDisplay:String = "" ):String {
         operandoEnMemoria = when(operacion) {
             "Store" -> numeroEnDisplay
-            "Recall" -> return operandoEnMemoria
+            "Recall" ->  {
+                resultado = if(operandoEnMemoria.endsWith(".0")) removerPuntoCero(operandoEnMemoria) else operandoEnMemoria
+                return resultado
+            }
             "MC" -> "0"
-            "Mem+" -> "${ operandoEnMemoria.toDouble() + numeroEnDisplay.toDouble() } "
-            "Mem-" -> "${ operandoEnMemoria.toDouble() - numeroEnDisplay.toDouble() } "
+            "Mem+" -> "${ operandoEnMemoria.toDouble() + numeroEnDisplay.toDouble() }"
+            "Mem-" -> "${ operandoEnMemoria.toDouble() - numeroEnDisplay.toDouble() }"
             else -> "0"
         }
         return numeroEnDisplay
+    }
+
+    private fun removerPuntoCero(operando:String): String {
+        return operando.substring(0, operando.length - 2)
     }
 }
