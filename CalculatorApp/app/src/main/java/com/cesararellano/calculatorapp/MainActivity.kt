@@ -5,11 +5,8 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
-import android.util.Log
 import android.view.Menu
 import android.widget.Toast
-
-private const val TAG = "MainActivity"
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,7 +18,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate( savedInstanceState: Bundle? ) {
         super.onCreate(savedInstanceState)
         setContentView( R.layout.activity_main )
-        supportActionBar!!.title = "Calculator App en Rads"
+
+        supportActionBar!!.title = "Calculator App | RAD"
         display  = findViewById( R.id.display )
         display2 = findViewById( R.id.display2 )
         display3 = findViewById( R.id.display3 )
@@ -32,18 +30,14 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
-    @Suppress( "UNUSED_PARAMETER")
     fun agregarNumeroCtrl(boton: View) {
         val number = (boton as Button).text.toString()
-
         val resultados:Array<String> = modeloCalculadora.agregarNumero(number)
-        if(resultados[1] == "true") {
-            Toast.makeText(this, "Error", Toast.LENGTH_SHORT ).show()
-        }
+
+        if(resultados[1] == "true") showToast()
 
         display.text = resultados[0]
         cambiandoDisplay2()
-
     }
 
     @Suppress( "UNUSED_PARAMETER")
@@ -79,14 +73,12 @@ class MainActivity : AppCompatActivity() {
         val resuladosCalcular:Array<String>
 
         if (!operador.matches( Regex("[+-/*]")) && operador != "xⁿ" && operador != "ⁿ√") {
-            Log.d(TAG, "sin cos √ 10ⁿ 1/X")
             modeloCalculadora.operadorSeleccionado(operador, operacionActual, true)
             resuladosCalcular = modeloCalculadora.calcularResultado()
             if( resuladosCalcular[1] == "true") showToast()
             display.text = resuladosCalcular[0]
             display2.text = "0"
         } else {
-            Log.d(TAG, "+ - / * xⁿ ⁿ√")
             resultadosOperador = modeloCalculadora.operadorSeleccionado(operador, operacionActual, false)
             display.text = resultadosOperador[0]
             display2.text = resultadosOperador[1]
@@ -96,22 +88,22 @@ class MainActivity : AppCompatActivity() {
     @Suppress("UNUSED_PARAMETER")
     fun calcularResultadoCtrl(boton: View) {
         val resultados:Array<String> = modeloCalculadora.calcularResultado()
+
+        if( resultados[1] == "true") showToast()
+
         display.text = resultados[0]
         display2.text = "0"
-        if( resultados[1] == "true") showToast()
     }
 
-    @Suppress( "UNUSED_PARAMETER")
     fun operacionEnMemoriaCtrl(boton: View) {
         val operacion = (boton as Button).text.toString()
-        val opcionRecall = "Recall"
+        val opcionRecall = getString(R.string.botonRecall)
 
         if( operacion == opcionRecall) {
             display.text = modeloCalculadora.operacionEnMemoria(opcionRecall)
             cambiandoDisplay2()
         } else {
-            val numeroEnDisplay = display.text.toString()
-            modeloCalculadora.operacionEnMemoria(operacion, numeroEnDisplay)
+            modeloCalculadora.operacionEnMemoria(operacion)
         }
 
         val operandoEnMemoria = modeloCalculadora.getOperandoEnMemoria()
@@ -128,17 +120,18 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    @Suppress("UNUSED_PARAMETER")
     fun cambiarGradosRadianes(item: android.view.MenuItem) {
         if( modeloCalculadora.getEstado() ) {
-            supportActionBar!!.title = "Calculator App en Degs"
+            item.title = "Cambiar a radianes"
+            supportActionBar!!.title = "Calculator App | DEG"
         } else {
-            supportActionBar!!.title = "Calculator App en Rads"
+            item.title = "Cambiar a grados"
+            supportActionBar!!.title = "Calculator App | RAD"
         }
         modeloCalculadora.setEstado()
     }
 
     private fun showToast() {
-        Toast.makeText(this, "Operación no válida", Toast.LENGTH_SHORT ).show()
+        Toast.makeText(this, "Operación no válida", Toast.LENGTH_SHORT).show()
     }
 }

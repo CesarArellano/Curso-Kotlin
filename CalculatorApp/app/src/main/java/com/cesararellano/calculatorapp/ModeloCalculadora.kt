@@ -3,23 +3,24 @@ package com.cesararellano.calculatorapp
 import kotlin.math.*
 
 class ModeloCalculadora {
+    private val numeroPI = PI
     private var operandoEnMemoria = "0"
     private var operandoEnEspera:String = "0" // Segundo operador
     private var operando:String = "0" // Primer Operador
     private var operacionEnEsperaDeOperando = ""
     private var resultado:String = "0"
     private var radianes = true
-    private val numeroPI = PI
 
     fun getOperandoEnMemoria():String {
         return if(operandoEnMemoria.endsWith(".0")) removerPuntoCero(operandoEnMemoria) else operandoEnMemoria
     }
 
-    fun setEstado() {
-        this.radianes = !this.radianes
-    }
     fun getEstado():Boolean {
         return this.radianes
+    }
+
+    fun setEstado() {
+        this.radianes = !this.radianes
     }
 
     fun resetear() {
@@ -97,7 +98,7 @@ class ModeloCalculadora {
                 textoDisplay2 = "$operando $nuevoOperador"
             } else {
                 val operacionActualSplit = operacionActual.split(" ")
-                println(operacionActualSplit)
+
                 if( operacionActualSplit.size == 2) {
                     textoDisplay2 = "$operando $operacionEnEsperaDeOperando $resultado"
                 } else {
@@ -111,9 +112,8 @@ class ModeloCalculadora {
             }
         }
 
-
         resultado = "0"
-        return arrayOf("0", textoDisplay2)
+        return arrayOf(resultado, textoDisplay2)
     }
 
     fun calcularResultado(): Array<String> {
@@ -121,8 +121,7 @@ class ModeloCalculadora {
 
         val numero1: Double = if (operando == "𝛑") numeroPI else operando.toDouble()
         val numero2: Double = if (resultado == "𝛑") numeroPI else resultado.toDouble()
-        println(numero1)
-        println(numero2)
+
         when (operacionEnEsperaDeOperando) {
             "+" -> resultado = "${ numero1 + numero2 }"
             "-" -> resultado = "${ numero1 - numero2 }"
@@ -182,19 +181,19 @@ class ModeloCalculadora {
     }
 
 
-    fun operacionEnMemoria(operacion:String, numeroEnDisplay:String = "" ):String {
+    fun operacionEnMemoria(operacion:String):String {
         operandoEnMemoria = when(operacion) {
-            "Store" -> numeroEnDisplay
+            "Store" -> resultado
             "Recall" ->  {
                 resultado = if(operandoEnMemoria.endsWith(".0")) removerPuntoCero(operandoEnMemoria) else operandoEnMemoria
                 return resultado
             }
             "MC" -> "0"
-            "Mem+" -> "${ operandoEnMemoria.toDouble() + numeroEnDisplay.toDouble() }"
-            "Mem-" -> "${ operandoEnMemoria.toDouble() - numeroEnDisplay.toDouble() }"
+            "Mem+" -> "${ operandoEnMemoria.toDouble() + resultado.toDouble() }"
+            "Mem-" -> "${ operandoEnMemoria.toDouble() - resultado.toDouble() }"
             else -> "0"
         }
-        return numeroEnDisplay
+        return resultado
     }
 
     private fun removerPuntoCero(operando:String): String {
