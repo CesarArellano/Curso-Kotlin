@@ -3,7 +3,7 @@ package com.cesararellano.calculatorapp
 import kotlin.math.*
 
 class ModeloCalculadora {
-    private var operadorEnMemoria = "0"
+    private var operandoEnMemoria = "0"
     private var operandoEnEspera:String = "0" // Segundo operador
     private var operando:String = "0" // Primer Operador
     private var operacionEnEsperaDeOperando = ""
@@ -14,12 +14,7 @@ class ModeloCalculadora {
         operando = "0"
         operacionEnEsperaDeOperando = ""
         resultado = "0"
-    }
-
-    private fun limpiarMemoria() {
-        operandoEnEspera = "0"
-        operando = "0"
-        resultado = "0"
+        operandoEnMemoria = "0"
     }
 
     fun agregarNumero(number: String): Array<String> {
@@ -144,12 +139,13 @@ class ModeloCalculadora {
     }
 
     fun operacionEnMemoria(operacion:String, numeroEnDisplay:String = "" ):String {
-        when(operacion) {
-            "Store" -> operando= numeroEnDisplay
-            "Recall" -> return operando
-            "MC" -> this.limpiarMemoria()
-            "Mem+" -> operando = "${ operando.toDouble() + numeroEnDisplay.toDouble() } "
-            "Mem-" -> operando = "${ operando.toDouble() - numeroEnDisplay.toDouble() } "
+        operandoEnMemoria = when(operacion) {
+            "Store" -> numeroEnDisplay
+            "Recall" -> return operandoEnMemoria
+            "MC" -> "0"
+            "Mem+" -> "${ operandoEnMemoria.toDouble() + numeroEnDisplay.toDouble() } "
+            "Mem-" -> "${ operandoEnMemoria.toDouble() - numeroEnDisplay.toDouble() } "
+            else -> "0"
         }
         return numeroEnDisplay
     }

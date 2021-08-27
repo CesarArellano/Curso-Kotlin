@@ -34,35 +34,26 @@ class MainActivity : AppCompatActivity() {
         }
 
         display.text = resultados[0]
-        changeDisplay2()
+        cambiandoDisplay2()
 
-    }
-
-    private fun changeDisplay2() {
-        val operacionActual = display2.text.split(" ")
-        if (operacionActual.size > 1)  {
-            display2.text = ("${operacionActual[0]} ${operacionActual[1]} ${display.text}")
-        } else {
-            display2.text = display.text
-        }
     }
 
     @Suppress( "UNUSED_PARAMETER")
     fun agregarPuntoDecimalCtrl(boton: View) {
         display.text = modeloCalculadora.agregarPuntoDecimal()
-        changeDisplay2()
+        cambiandoDisplay2()
     }
 
     @Suppress( "UNUSED_PARAMETER")
     fun cambiarSignoCtrl(boton: View) {
         display.text = modeloCalculadora.cambiarSigno()
-        changeDisplay2()
+        cambiandoDisplay2()
     }
 
     @Suppress( "UNUSED_PARAMETER")
     fun eliminarUltimaEntradaCtrl(boton: View) {
         display.text = modeloCalculadora.eliminarUltimaEntrada()
-        changeDisplay2()
+        cambiandoDisplay2()
     }
 
     @Suppress( "UNUSED_PARAMETER")
@@ -108,14 +99,21 @@ class MainActivity : AppCompatActivity() {
 
         if( operacion == opcionRecall) {
             display.text = modeloCalculadora.operacionEnMemoria(opcionRecall)
+            cambiandoDisplay2()
         } else {
             val numeroEnDisplay = display.text.toString()
             modeloCalculadora.operacionEnMemoria(operacion, numeroEnDisplay)
-            if(operacion == "MC") {
-                display2.text = ""
-            }
         }
 
+    }
+
+    private fun cambiandoDisplay2() {
+        val operacionActual = display2.text.split(" ")
+        if (operacionActual.size > 1)  {
+            display2.text = ("${operacionActual[0]} ${operacionActual[1]} ${display.text}")
+        } else {
+            display2.text = display.text
+        }
     }
 
     private fun showToast() {
