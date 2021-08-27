@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity() {
     fun resetearCtrl(boton: View) {
         modeloCalculadora.resetear()
         display.text = "0"
-        display2.text = ""
+        display2.text = "0"
     }
 
     fun operadorSeleccionadoCtrl(boton: View) {
@@ -70,14 +70,14 @@ class MainActivity : AppCompatActivity() {
         val resuladosCalcular:Array<String>
 
         if (!operador.matches( Regex("[+-/*]")) && operador != "xⁿ" && operador != "ⁿ√") {
-            Log.d(TAG, "if")
+            Log.d(TAG, "sin cos √ 10ⁿ 1/X")
             modeloCalculadora.operadorSeleccionado(operador, operacionActual, true)
             resuladosCalcular = modeloCalculadora.calcularResultado()
             if( resuladosCalcular[1] == "true") showToast()
             display.text = resuladosCalcular[0]
-            display2.text = ""
+            display2.text = "0"
         } else {
-            Log.d(TAG, "else")
+            Log.d(TAG, "+ - / * xⁿ ⁿ√")
             resultadosOperador = modeloCalculadora.operadorSeleccionado(operador, operacionActual, false)
             display.text = resultadosOperador[0]
             display2.text = resultadosOperador[1]
@@ -88,7 +88,7 @@ class MainActivity : AppCompatActivity() {
     fun calcularResultadoCtrl(boton: View) {
         val resultados:Array<String> = modeloCalculadora.calcularResultado()
         display.text = resultados[0]
-        display2.text = ""
+        display2.text = "0"
         if( resultados[1] == "true") showToast()
     }
 

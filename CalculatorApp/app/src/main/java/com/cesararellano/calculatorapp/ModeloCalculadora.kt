@@ -8,6 +8,7 @@ class ModeloCalculadora {
     private var operando:String = "0" // Primer Operador
     private var operacionEnEsperaDeOperando = ""
     private var resultado:String = "0"
+    private val numeroPI = PI
 
     fun resetear() {
         operandoEnEspera = "0"
@@ -23,6 +24,10 @@ class ModeloCalculadora {
         when(resultado) {
             "0" -> resultado = number
             "-0" -> resultado = "-$number"
+            "𝛑" -> {
+                error ="true"
+                resultado = "0"
+            }
             else -> {
                 resultado += number
                 if( number == "𝛑") {
@@ -42,7 +47,7 @@ class ModeloCalculadora {
         resultado = if (resultado.startsWith("0")) {
             "0."
         } else {
-            "$resultado."
+            if (resultado != "𝛑") "$resultado." else resultado
         }
 
         return resultado
@@ -87,6 +92,7 @@ class ModeloCalculadora {
                     operando = operacionActualSplit[0]
                     resultado = operacionActualSplit[2]
                     val resultadoFinal = this.calcularResultado()[0]
+                    operando = resultadoFinal
                     operacionEnEsperaDeOperando = nuevoOperador
                     textoDisplay2 = "$resultadoFinal $nuevoOperador"
                 }
@@ -100,27 +106,35 @@ class ModeloCalculadora {
 
     fun calcularResultado(): Array<String> {
         var error = "false"
-        val number1: Double = if (operando == "𝛑") 3.1416 else operando.toDouble()
-        val number2: Double = if (operando == "𝛑") 3.1416 else resultado.toDouble()
+
+        val numero1: Double = if (operando == "𝛑") numeroPI else operando.toDouble()
+        val numero2: Double = if (resultado == "𝛑") numeroPI else resultado.toDouble()
+        println(numero1)
 
         when (operacionEnEsperaDeOperando) {
-            "+" -> resultado = "${ number1 + number2 }"
-            "-" -> resultado = "${ number1 - number2 }"
-            "*" -> resultado = "${ number1 * number2 }"
+            "+" -> resultado = "${ numero1 + numero2 }"
+            "-" -> resultado = "${ numero1 - numero2 }"
+            "*" -> resultado = "${ numero1 * numero2 }"
             "/" -> {
-                if (number2 != 0.0) {
-                    resultado = "${ number1 / number2 }"
+                if (numero2 != 0.0) {
+                    resultado = "${ numero1 / numero2 }"
                 } else {
                     error = "true"
                 }
             }
-            "xⁿ" -> resultado = "${ number1.pow(number2) }"
-            "ⁿ√" -> resultado = "${ number2.pow(1 / number1) }"
-            "sin" ->  resultado = "${ sin( number1 ) }"
-            "cos" ->  resultado = "${ cos( number1 ) }"
-            "√" -> resultado = "${ sqrt( number1 ) }"
-            "10ⁿ"-> resultado = "${10.0.pow(number1)}"
-            "1/X" -> resultado = "${ 1/number1 }"
+            "xⁿ" -> resultado = "${ numero1.pow(numero2) }"
+            "ⁿ√" -> resultado = "${ numero2.pow(1 / numero1) }"
+            "sin" ->  resultado = "${ sin( numero1 ) }"
+            "cos" ->  resultado = "${ cos( numero1 ) }" //cos( Math.toRadians(numero1) in degress
+            "√" -> resultado = "${ sqrt( numero1 ) }"
+            "10ⁿ"-> resultado = "${10.0.pow(numero1)}"
+            "1/X" -> {
+                if (numero1 != 0.0) {
+                    resultado = "${1 / numero1}"
+                } else {
+                    error = "true"
+                }
+            }
             else -> resultado = "0"
         }
 
