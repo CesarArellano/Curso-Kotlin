@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Calculator App en Rad</string>
+    <string name="app_name">Calculator App</string>
     <string name="botonSiete">7</string>
     <string name="botonOcho">8</string>
     <string name="botonNueve">9</string>

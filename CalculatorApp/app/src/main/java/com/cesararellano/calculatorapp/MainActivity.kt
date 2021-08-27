@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate( savedInstanceState: Bundle? ) {
         super.onCreate(savedInstanceState)
         setContentView( R.layout.activity_main )
-
+        supportActionBar!!.title = "Calculator App en Rads"
         display  = findViewById( R.id.display )
         display2 = findViewById( R.id.display2 )
         display3 = findViewById( R.id.display3 )
@@ -69,6 +69,7 @@ class MainActivity : AppCompatActivity() {
         modeloCalculadora.resetear()
         display.text = "0"
         display2.text = "0"
+        display3.text = ("Mem: 0")
     }
 
     fun operadorSeleccionadoCtrl(boton: View) {
@@ -127,18 +128,17 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun showToast() {
-        Toast.makeText(this, "Error", Toast.LENGTH_SHORT ).show()
-    }
-
     @Suppress("UNUSED_PARAMETER")
     fun cambiarGradosRadianes(item: android.view.MenuItem) {
         if( modeloCalculadora.getEstado() ) {
-            supportActionBar!!.title = "Calculator App en Deg"
+            supportActionBar!!.title = "Calculator App en Degs"
         } else {
             supportActionBar!!.title = "Calculator App en Rads"
         }
         modeloCalculadora.setEstado()
     }
 
+    private fun showToast() {
+        Toast.makeText(this, "Operación no válida", Toast.LENGTH_SHORT ).show()
+    }
 }
