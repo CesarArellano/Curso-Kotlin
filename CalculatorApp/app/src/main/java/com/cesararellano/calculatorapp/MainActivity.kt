@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         val number = (boton as Button).text.toString()
         val resultados:Array<String> = modeloCalculadora.agregarNumero(number)
 
-        if(resultados[1] == "true") showToast()
+        if( resultados[1] == "true" ) showToast()
 
         display.text = resultados[0]
         cambiandoDisplay2()
@@ -72,14 +72,19 @@ class MainActivity : AppCompatActivity() {
         val resultadosOperador:Array<String>
         val resuladosCalcular:Array<String>
 
-        if (!operador.matches( Regex("[+-/*]")) && operador != "xⁿ" && operador != "ⁿ√") {
-            modeloCalculadora.operadorSeleccionado(operador, operacionActual, true)
+        if ( !operador.matches( Regex("[+-/*]") ) && operador != "xⁿ" && operador != "ⁿ√") {
+            modeloCalculadora.operadorSeleccionado(operador, true)
             resuladosCalcular = modeloCalculadora.calcularResultado()
-            if( resuladosCalcular[1] == "true") showToast()
+
+            if( resuladosCalcular[1] == "true" ) showToast()
+
             display.text = resuladosCalcular[0]
             display2.text = "0"
         } else {
-            resultadosOperador = modeloCalculadora.operadorSeleccionado(operador, operacionActual, false)
+            resultadosOperador = modeloCalculadora.operadorSeleccionado(operador, false, operacionActual)
+
+            if( resultadosOperador[2] == "true" ) showToast()
+
             display.text = resultadosOperador[0]
             display2.text = resultadosOperador[1]
         }
@@ -99,7 +104,7 @@ class MainActivity : AppCompatActivity() {
         val operacion = (boton as Button).text.toString()
         val opcionRecall = getString(R.string.botonRecall)
 
-        if( operacion == opcionRecall) {
+        if( operacion == opcionRecall ) {
             display.text = modeloCalculadora.operacionEnMemoria(opcionRecall)
             cambiandoDisplay2()
         } else {
@@ -109,15 +114,6 @@ class MainActivity : AppCompatActivity() {
         val operandoEnMemoria = modeloCalculadora.getOperandoEnMemoria()
         display3.text = ("Mem: $operandoEnMemoria")
 
-    }
-
-    private fun cambiandoDisplay2() {
-        val operacionActual = display2.text.split(" ")
-        if (operacionActual.size > 1)  {
-            display2.text = ("${operacionActual[0]} ${operacionActual[1]} ${display.text}")
-        } else {
-            display2.text = display.text
-        }
     }
 
     fun cambiarGradosRadianes(item: android.view.MenuItem) {
@@ -130,6 +126,17 @@ class MainActivity : AppCompatActivity() {
         }
         modeloCalculadora.setEstado()
     }
+
+    private fun cambiandoDisplay2() {
+        val operacionActual = display2.text.split(" ")
+
+        if ( operacionActual.size > 1 )  {
+            display2.text = ("${operacionActual[0]} ${operacionActual[1]} ${display.text}")
+        } else {
+            display2.text = display.text
+        }
+    }
+
 
     private fun showToast() {
         Toast.makeText(this, "Operación no válida", Toast.LENGTH_SHORT).show()
