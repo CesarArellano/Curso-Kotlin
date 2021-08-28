@@ -89,7 +89,6 @@ class ModeloCalculadora {
         } else {
             "0"
         }
-        println(resultado)
         return resultado
     }
 
@@ -101,18 +100,16 @@ class ModeloCalculadora {
             operando = resultado
             textoDisplay2 = ""
         } else {
-            if( operacionEnEsperaDeOperando == "") {
-                operacionEnEsperaDeOperando = nuevoOperador
-                operando = resultado
-                textoDisplay2 = "$operando $nuevoOperador"
-            } else {
-                val operacionActualSplit = operacionActual.split(" ")
-
-                if( operacionActualSplit.size == 2) {
+            when {
+                operacionEnEsperaDeOperando == "" -> {
+                    operacionEnEsperaDeOperando = nuevoOperador
+                    operando = resultado
+                    textoDisplay2 = "$operando $nuevoOperador"
+                }
+                operacionActual.split(" ").size == 2 -> {
                     textoDisplay2 = "$operando $operacionEnEsperaDeOperando $resultado"
-                } else {
-                    operando = operacionActualSplit[0]
-                    resultado = operacionActualSplit[2]
+                }
+                else -> {
                     val resultadoFinal = this.calcularResultado()[0]
                     operando = resultadoFinal
                     operacionEnEsperaDeOperando = nuevoOperador
@@ -130,8 +127,7 @@ class ModeloCalculadora {
 
         val numero1: Double = if (operando == "𝛑") numeroPI else operando.toDouble()
         val numero2: Double = if (resultado == "𝛑") numeroPI else resultado.toDouble()
-        println(numero1)
-        println(numero2)
+
         when (operacionEnEsperaDeOperando) {
             "+" -> resultado = "${ numero1 + numero2 }"
             "-" -> resultado = "${ numero1 - numero2 }"
@@ -176,14 +172,12 @@ class ModeloCalculadora {
             else -> resultado = "0"
         }
 
-        println(resultado)
         operacionEnEsperaDeOperando = ""
         operandoEnEspera = resultado
 
         if( resultado.contains("E") && resultado.length > 14) {
             val compactarResultado = resultado.split("E")
             resultado = compactarResultado[0].substring(0, 8) + "E" + compactarResultado[1]
-            println(resultado)
         }
 
         if (resultado.endsWith(".0")) {
