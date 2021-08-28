@@ -25,7 +25,7 @@
         android:layout_marginBottom="10dp"
         android:text=""
         android:textColor="#CC000000"
-        android:textSize="30sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/botonStore"
         app:layout_constraintStart_toStartOf="parent" />
 

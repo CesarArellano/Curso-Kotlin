@@ -36,20 +36,26 @@ class ModeloCalculadora {
     fun agregarNumero(number: String): Array<String> {
         var error = "false"
 
-        when(resultado) {
+        if( resultado.length >= 14 ) return arrayOf(resultado, "true")
+
+        if( resultado.contains("E") ) {
+            resultado = "0"
+            return arrayOf(resultado, "true")
+        }
+
+        when( resultado ) {
             "0" -> resultado = number
             "-0" -> resultado = "-$number"
             "𝛑" -> {
                 error ="true"
-                resultado = "0"
             }
             else -> {
-                resultado += number
                 if( number == "𝛑") {
                     error = "true"
                     resultado = "0"
+                } else {
+                    resultado += number
                 }
-
             }
         }
 
@@ -83,6 +89,7 @@ class ModeloCalculadora {
         } else {
             "0"
         }
+        println(resultado)
         return resultado
     }
 
@@ -123,7 +130,8 @@ class ModeloCalculadora {
 
         val numero1: Double = if (operando == "𝛑") numeroPI else operando.toDouble()
         val numero2: Double = if (resultado == "𝛑") numeroPI else resultado.toDouble()
-
+        println(numero1)
+        println(numero2)
         when (operacionEnEsperaDeOperando) {
             "+" -> resultado = "${ numero1 + numero2 }"
             "-" -> resultado = "${ numero1 - numero2 }"
@@ -164,18 +172,26 @@ class ModeloCalculadora {
                     error = "true"
                 }
             }
+            ""-> resultado = "$numero2"
             else -> resultado = "0"
         }
 
+        println(resultado)
         operacionEnEsperaDeOperando = ""
         operandoEnEspera = resultado
 
-        if(resultado.length > 10) {
-            resultado = resultado.substring(0, resultado.length - 10)
+        if( resultado.contains("E") && resultado.length > 14) {
+            val compactarResultado = resultado.split("E")
+            resultado = compactarResultado[0].substring(0, 8) + "E" + compactarResultado[1]
+            println(resultado)
         }
 
         if (resultado.endsWith(".0")) {
             resultado = removerPuntoCero(resultado)
+        }
+
+        if( resultado.length > 14) {
+            resultado = resultado.substring(0, 14)
         }
 
         return arrayOf(resultado, error)
