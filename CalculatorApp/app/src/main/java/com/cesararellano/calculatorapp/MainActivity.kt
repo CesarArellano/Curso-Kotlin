@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
         cambiandoDisplay2()
     }
 
-    // Cambia el signo del operando actual a + o -
+    // Cambia el signo del operando actual a positivo o negativo.
     @Suppress( "UNUSED_PARAMETER")
     fun cambiarSignoCtrl(boton: View) {
         display.text = modeloCalculadora.cambiarSigno()
