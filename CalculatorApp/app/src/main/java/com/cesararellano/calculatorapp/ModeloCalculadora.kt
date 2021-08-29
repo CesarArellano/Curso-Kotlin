@@ -22,9 +22,6 @@ class ModeloCalculadora {
     private var resultado:String = "0" // Número mostrado en Display 1
 
     fun getOperandoEnMemoria():String {
-        if( operandoEnMemoria.endsWith(".0") ) {
-            operandoEnMemoria = removerPuntoCero(operandoEnMemoria)
-        }
         return operandoEnMemoria
     }
 
@@ -102,7 +99,7 @@ class ModeloCalculadora {
         return resultado
     }
 
-    fun operadorSeleccionado(nuevoOperador: String, operacionDeUnOperando: Boolean, operacionActual:String = ""):Array<String> {
+    fun operadorSeleccionado(nuevoOperador: String, operacionDeUnOperando: Boolean, longitudOperacionActual:Int = 0):Array<String> {
         var error = "false"
         val textoDisplay2:String
 
@@ -117,7 +114,7 @@ class ModeloCalculadora {
                     operando = resultado
                     textoDisplay2 = "$operando $nuevoOperador"
                 }
-                operacionActual.split(" ").size == 2 -> {
+                longitudOperacionActual == 2 -> {
                     textoDisplay2 = "$operando $operacionEnEsperaDeOperando $resultado"
                 }
                 else -> {
@@ -214,16 +211,17 @@ class ModeloCalculadora {
     fun operacionEnMemoria(operacion:String):String {
         operandoEnMemoria = when( operacion ) {
             "Store" -> resultado
-            "Recall" ->  {
-                resultado = if( operandoEnMemoria.endsWith(".0") ) removerPuntoCero(operandoEnMemoria) else operandoEnMemoria
-                return resultado
-            }
             "MC" -> "0"
             "Mem+" -> "${ operandoEnMemoria.toDouble() + resultado.toDouble() }"
             "Mem-" -> "${ operandoEnMemoria.toDouble() - resultado.toDouble() }"
             else -> "0"
         }
-        return resultado
+
+        if( operandoEnMemoria.endsWith(".0") ) {
+            operandoEnMemoria = removerPuntoCero(operandoEnMemoria)
+        }
+
+        return operandoEnMemoria
     }
 
     private fun removerPuntoCero( operando:String ): String {
