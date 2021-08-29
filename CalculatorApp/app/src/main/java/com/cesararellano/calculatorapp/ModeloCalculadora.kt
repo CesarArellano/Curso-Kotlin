@@ -13,14 +13,6 @@ class ModeloCalculadora {
     private var resultado:String = "0" // Número mostrado en Display 1
 
     /*
-    * @function getOperandoEnMemoria
-    * @result Regresa el string del operando en memoria.
-    */
-    fun getOperandoEnMemoria():String {
-        return operandoEnMemoria
-    }
-
-    /*
     * @function getEstado
     * @result Regresa un boolean diciendo si la calculadora está en radianes o no.
     */
@@ -258,6 +250,7 @@ class ModeloCalculadora {
         operandoEnMemoria = when( operacion ) {
             "Store" -> resultado
             "MC" -> "0"
+            "Recall" -> operandoEnMemoria
             "Mem+" -> "${ operandoEnMemoria.toDouble() + resultado.toDouble() }"
             "Mem-" -> "${ operandoEnMemoria.toDouble() - resultado.toDouble() }"
             else -> "0"
@@ -265,6 +258,10 @@ class ModeloCalculadora {
 
         if( operandoEnMemoria.endsWith(".0") ) {
             operandoEnMemoria = removerPuntoCero(operandoEnMemoria)
+        }
+
+        if( operacion == "Recall" ) {
+            resultado = operandoEnMemoria
         }
 
         return operandoEnMemoria

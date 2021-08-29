@@ -112,7 +112,7 @@ class MainActivity : AppCompatActivity() {
         val opcionRecall:String = getString(R.string.botonRecall) // Se obtiene el String del botón Recall, ya que es la única operación de memoria que refresca el display 1 y 2.
 
         if( operacion == opcionRecall ) { // Será verdadero, si presionó el botón Recall.
-            display.text = modeloCalculadora.getOperandoEnMemoria() // Obtiene operando en memoria del modelo.
+            display.text = modeloCalculadora.operacionEnMemoria(operacion) // Realiza la operación adecuada en memoria.
             cambiandoDisplay2()
         } else {
             val operandoEnMemoria:String = modeloCalculadora.operacionEnMemoria(operacion) // Realiza la operación adecuada en memoria.
