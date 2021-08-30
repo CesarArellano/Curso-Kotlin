@@ -61,6 +61,9 @@ class ModeloCalculadora {
             "𝛑" -> {
                 error ="true"
             }
+            "-𝛑" -> {
+                error ="true"
+            }
             else -> {
                 if( numero == "𝛑" ) {
                     error = "true"
@@ -175,8 +178,17 @@ class ModeloCalculadora {
     fun calcularResultado(): Array<String> {
         var error = "false"
         // Si algún operando es pi retorna el numero PI de la librería Math de Kotlin.
-        val numero1: Double = if ( operando == "𝛑" ) numeroPI else operando.toDouble()
-        val numero2: Double = if ( resultado == "𝛑" ) numeroPI else resultado.toDouble()
+        val numero1: Double = when(operando) {
+            "𝛑" -> numeroPI
+            "-𝛑" -> -numeroPI
+            else -> operando.toDouble()
+        }
+
+        val numero2: Double = when(resultado) {
+            "𝛑" -> numeroPI
+            "-𝛑" -> -numeroPI
+            else -> resultado.toDouble()
+        }
 
         when (operacionEnEsperaDeOperando) {
             "+" -> resultado = "${ numero1 + numero2 }"
@@ -241,6 +253,8 @@ class ModeloCalculadora {
         if( resultado.length > 14 ) { // Si la longitud del resultado es mayor a 14 se compactará para que quepa en pantalla.
             resultado = resultado.substring(0, 13)
         }
+
+        if( resultado == "-0") resultado = "0"
 
         return arrayOf( resultado, error )
     }
