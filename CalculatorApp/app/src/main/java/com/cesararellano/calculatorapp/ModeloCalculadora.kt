@@ -88,7 +88,7 @@ class ModeloCalculadora {
         resultado = if ( resultado.startsWith("0") ) {
             "0."
         } else {
-            if ( resultado != "𝛑" ) "$resultado." else resultado
+            if ( resultado != "𝛑" || resultado != "-𝛑" ) "$resultado." else resultado
         }
 
         return resultado
