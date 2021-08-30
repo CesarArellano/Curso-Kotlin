@@ -185,15 +185,19 @@ class ModeloCalculadora {
             "/" -> {
                 if ( numero2 != 0.0 ) {
                     resultado = "${ numero1 / numero2 }"
+                    if( resultado.contains(".000")) resultado = "${ round( resultado.toDouble() )}" // Validación para redondear
                 } else {
+                    resultado = "0"
                     error = "true"
                 }
             }
             "xⁿ" -> resultado = "${ numero1.pow(numero2) }"
             "ⁿ√" -> {
-                if( numero2 >= 0.0 ) {
+                if( numero2 >= 0.0 && numero1 != 0.0 ) {
                     resultado = "${ numero2.pow(1 / numero1) }"
+                    if( resultado.contains(".99999999")) resultado = "${ round( resultado.toDouble() )}" // Validación para redondear
                 } else {
+                    resultado = "0"
                     error = "true"
                 }
             }
@@ -214,6 +218,7 @@ class ModeloCalculadora {
             "1/X" -> {
                 if ( numero1 != 0.0 ) {
                     resultado = "${ 1 / numero1 }"
+                    if( resultado.contains(".000")) resultado = "${ round( resultado.toDouble() )}" // Validación para redondear
                 } else {
                     error = "true"
                 }
