@@ -62,8 +62,7 @@
         android:background="#E3E3E3"
         app:layout_constraintBottom_toTopOf="@+id/BotonMemMas"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/botonMC"
@@ -284,7 +283,7 @@
         app:layout_constraintBottom_toTopOf="@+id/botonCuatro"
         app:layout_constraintEnd_toStartOf="@+id/botonOcho"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints,UsingOnClickInXml" />
+        tools:ignore="UsingOnClickInXml" />
 
     <Button
         android:id="@+id/botonOcho"
@@ -323,7 +322,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/botonNueve"
         app:layout_constraintTop_toTopOf="@+id/botonNueve"
-        tools:ignore="MissingConstraints,UsingOnClickInXml" />
+        tools:ignore="UsingOnClickInXml" />
 
     <Button
         android:id="@+id/botonCuatro"
@@ -336,7 +335,7 @@
         app:layout_constraintBottom_toTopOf="@+id/botonUno"
         app:layout_constraintEnd_toStartOf="@+id/botonCinco"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints,UsingOnClickInXml" />
+        tools:ignore="UsingOnClickInXml" />
 
     <Button
         android:id="@+id/botonCinco"
@@ -454,7 +453,7 @@
         app:layout_constraintEnd_toStartOf="@+id/botonPuntoDecimal"
         app:layout_constraintStart_toEndOf="@+id/botonPi"
         app:layout_constraintTop_toTopOf="@+id/botonPi"
-        tools:ignore="MissingConstraints,UsingOnClickInXml" />
+        tools:ignore="UsingOnClickInXml" />
 
     <Button
         android:id="@+id/botonPuntoDecimal"
@@ -480,6 +479,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/botonPuntoDecimal"
         app:layout_constraintTop_toTopOf="@+id/botonPuntoDecimal"
-        tools:ignore="MissingConstraints, UsingOnClickInXml" />
+        tools:ignore="UsingOnClickInXml" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

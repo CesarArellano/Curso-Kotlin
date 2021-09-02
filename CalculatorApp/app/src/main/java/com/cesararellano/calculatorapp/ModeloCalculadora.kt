@@ -258,7 +258,6 @@ class ModeloCalculadora {
     */
     fun operacionEnMemoria(operacion:String):String {
         //Validaciones al convertir.
-        operandoEnMemoria = validandoSimboloPI(operandoEnMemoria)
         resultado = validandoSimboloPI(resultado)
 
         operandoEnMemoria = when( operacion ) {
