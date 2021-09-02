@@ -1,25 +1,21 @@
 package com.cesararellano.calculatorapp
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 
-private const val TAG = "CalculadoraViewModel"
-
 class CalculadoraViewModel: ViewModel() {
-    private val modeloCalculadora = ModeloCalculadora()
+    private val modeloCalculadora = ModeloCalculadora() // La instancia mantiene su estado en este ViewModel.
     private lateinit var resultadosArray: Array<String>
 
+    // Estas variables, sirven para preservar el estado de la app.
     var resultado:String = "0" // Número mostrado en Display 1
     var operacionActual:String = "0" // Número mostrado en Display 2
     var operandoEnMemoria = "Mem: 0" // Número mostrado en Display 3
 
-    init {
-        Log.d(TAG, "Instancia de View Model")
-    }
+    // Todas las funciones llamadas en este ViewModel, sirven como intermediario entre MainActivity (Controller) y ModeloCalculadora (Model).
 
     fun agregarNumeroVM(numero:String):Array<String> {
         resultadosArray = modeloCalculadora.agregarNumero(numero)
-        resultado = resultadosArray[0]
+        resultado = resultadosArray[0] // En la posición 0 contiene el resultado agregar el número.
         return resultadosArray
     }
 
@@ -47,13 +43,13 @@ class CalculadoraViewModel: ViewModel() {
 
     fun calcularResultadoVM():Array<String> {
         resultadosArray = modeloCalculadora.calcularResultado()
-        resultado = resultadosArray[0]
+        resultado = resultadosArray[0] // En la posición 0 contiene el resultado de la operación
         return resultadosArray
     }
 
     fun operadorSeleccionadoVM(nuevoOperador: String, operacionDeUnOperando: Boolean, longitudOperacionActual:Int = 0):Array<String> {
         resultadosArray = modeloCalculadora.operadorSeleccionado(nuevoOperador, operacionDeUnOperando, longitudOperacionActual)
-        resultado = resultadosArray[0]
+        resultado = resultadosArray[0] // En la posición 0 contiene el resultado de la operación
         return resultadosArray
     }
 
@@ -70,8 +66,4 @@ class CalculadoraViewModel: ViewModel() {
         modeloCalculadora.setEstado()
     }
 
-    override fun onCleared() {
-        super.onCleared()
-        Log.d(TAG, "El View Model está por destruirse")
-    }
 }

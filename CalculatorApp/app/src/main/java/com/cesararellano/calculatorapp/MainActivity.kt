@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
         display3 = findViewById( R.id.display3 )
     }
 
+    // En esta función se restablecen los valores que preserva el ViewModel.
     override fun onStart() {
         super.onStart()
         display.text = calculadoraViewModel.resultado
@@ -39,6 +40,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    // En esta función se almacenan los valores en el ViewModel, antes de que se destruya MainActivity tras rotar el teléfono y así mantenga el estado.
     override fun onDestroy() {
         super.onDestroy()
         calculadoraViewModel.resultado = display.text.toString()
@@ -84,7 +86,7 @@ class MainActivity : AppCompatActivity() {
         cambiandoDisplay2()
     }
 
-    // En esta función se limpia la memoria, operaciones pendientes y se refresca la pantalla a 0.
+    // En esta función se limpia la memoria, operaciones pendientes y se refresca la pantalla a "0".
     @Suppress( "UNUSED_PARAMETER")
     fun resetearCtrl(boton: View) {
         calculadoraViewModel.resetearVM()

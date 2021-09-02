@@ -178,17 +178,8 @@ class ModeloCalculadora {
     fun calcularResultado(): Array<String> {
         var error = "false"
         // Si algún operando es pi retorna el numero PI de la librería Math de Kotlin.
-        val numero1: Double = when(operando) {
-            "𝛑" -> numeroPI
-            "-𝛑" -> -numeroPI
-            else -> operando.toDouble()
-        }
-
-        val numero2: Double = when(resultado) {
-            "𝛑" -> numeroPI
-            "-𝛑" -> -numeroPI
-            else -> resultado.toDouble()
-        }
+        val numero1: Double = convertirOperando(operando)
+        val numero2: Double = convertirOperando(resultado)
 
         when (operacionEnEsperaDeOperando) {
             "+" -> resultado = "${ numero1 + numero2 }"
@@ -266,6 +257,10 @@ class ModeloCalculadora {
     * @result Regresa un string con el nuevo operando en memoria.
     */
     fun operacionEnMemoria(operacion:String):String {
+        //Validaciones al convertir.
+        operandoEnMemoria = validandoSimboloPI(operandoEnMemoria)
+        resultado = validandoSimboloPI(resultado)
+
         operandoEnMemoria = when( operacion ) {
             "Store" -> resultado
             "MC" -> "0"
@@ -294,5 +289,33 @@ class ModeloCalculadora {
     */
     private fun removerPuntoCero( operando:String ): String {
         return operando.substring( 0, operando.length - 2 )
+    }
+
+    /*
+    * @function validandoSimboloPI
+    * @brief Esta función coloca el número PI en String, en dado caso que este guardado como símbolo, si no devuelve el mismo operando.
+    * @param operando, es el operando a convertir.
+    * @result Regresa un string con el nuevo operando.
+    */
+    private fun validandoSimboloPI( operando:String ): String {
+        return when(operando) {
+            "𝛑" -> "$numeroPI"
+            "-𝛑" -> "-$numeroPI"
+            else -> operando
+        }
+    }
+
+    /*
+    * @function convertirOperando
+    * @brief Esta función coloca el número PI en Double, en dado caso que este guardado como símbolo, si no devuelve el mismo operando.
+    * @param operando, es el operando a convertir.
+    * @result Regresa un double con el nuevo operando.
+    */
+    private fun convertirOperando( operando:String ): Double {
+        return when(operando) {
+            "𝛑" -> numeroPI
+            "-𝛑" -> -numeroPI
+            else -> operando.toDouble()
+        }
     }
 }
