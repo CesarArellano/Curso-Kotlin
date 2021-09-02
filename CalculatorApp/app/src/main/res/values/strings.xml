@@ -35,5 +35,5 @@
     <string name="botonCambioSigno">+/-</string>
     <string name="botonPi">𝛑</string>
     <string name="botonPuntoDecimal">.</string>
-    <string name="opcionSwitch">Cambiar a grados</string>
+    <string name="opcionSwitch">Cambiar modo</string>
 </resources>
