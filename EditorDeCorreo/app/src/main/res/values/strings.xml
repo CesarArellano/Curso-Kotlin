@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Editor De Correo</string>
+    <string name="labelEmail">raywayday@gmail.com</string>
+    <string name="botonEditar">Editar</string>
+    <string name="labelIntrucciones">Para editar su correo, presione en editar</string>
+    <string name="labelCambiarCorreo">Escribe un nuevo correo, presione tap en OK</string>
+    <string name="botonOk">OK</string>
+    <string name="botonCancelar">Cancelar</string>
+    <string name="emailLabelEditText">Escribe tu email aquí</string>
+</resources>
