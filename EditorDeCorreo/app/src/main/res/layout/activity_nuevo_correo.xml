@@ -32,7 +32,7 @@
         android:text="@string/labelCambiarCorreo"
         app:layout_constraintBottom_toTopOf="@+id/editTextTextEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.963"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -42,6 +42,7 @@
         android:layout_marginTop="16dp"
         android:onClick="ok"
         android:text="@string/botonOk"
+        app:layout_constraintBottom_toBottomOf="@+id/emailEditText"
         app:layout_constraintEnd_toStartOf="@+id/button3"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -54,9 +55,11 @@
         android:layout_height="wrap_content"
         android:onClick="cancel"
         android:text="@string/botonCancelar"
+        app:layout_constraintBottom_toTopOf="@+id/emailEditText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/button2"
         app:layout_constraintTop_toTopOf="@+id/button2"
+        app:layout_constraintVertical_bias="0.0"
         tools:ignore="UsingOnClickInXml" />
 </androidx.constraintlayout.widget.ConstraintLayout>

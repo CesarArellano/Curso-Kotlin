@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.EditText
+import android.widget.Toast
 
 class NuevoCorreoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,7 +18,18 @@ class NuevoCorreoActivity : AppCompatActivity() {
     }
 
     fun ok( @Suppress("UNUSED_PARAMETER") botton: View ) {
+        val newEmail = findViewById<EditText>(R.id.emailEditText).text.toString()
 
+        if( newEmail.isEmpty() ) {
+            Toast.makeText(this, "El campo no puede quedar vacío", Toast.LENGTH_SHORT ).show()
+            return
+        }
+
+        val data = Intent().apply {
+            putExtra("NEW_EMAIL", newEmail)
+        }
+        setResult(Activity.RESULT_OK, data)
+        finish()
     }
 
     fun cancel( @Suppress("UNUSED_PARAMETER") botton: View ) {
