@@ -13,27 +13,29 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:autofillHints="@id/editTextTextEmailAddress"
+        android:autofillHints="@string/emailLabelEditText"
         android:ems="10"
         android:hint="@string/emailLabelEditText"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.499" />
 
-    <TextView
-        android:id="@+id/textView2"
+    <Button
+        android:id="@+id/button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:text="@string/labelCambiarCorreo"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextEmailAddress"
+        android:onClick="cancel"
+        android:text="@string/botonCancelar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.963"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button2"
+        app:layout_constraintTop_toTopOf="@+id/button2"
+        tools:ignore="UsingOnClickInXml" />
 
     <Button
         android:id="@+id/button2"
@@ -42,24 +44,20 @@
         android:layout_marginTop="16dp"
         android:onClick="ok"
         android:text="@string/botonOk"
-        app:layout_constraintBottom_toBottomOf="@+id/emailEditText"
         app:layout_constraintEnd_toStartOf="@+id/button3"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress"
+        app:layout_constraintTop_toBottomOf="@+id/emailEditText"
         tools:ignore="UsingOnClickInXml" />
 
-    <Button
-        android:id="@+id/button3"
+    <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="cancel"
-        android:text="@string/botonCancelar"
+        android:layout_marginBottom="16dp"
+        android:text="@string/labelCambiarCorreo"
         app:layout_constraintBottom_toTopOf="@+id/emailEditText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/button2"
-        app:layout_constraintTop_toTopOf="@+id/button2"
-        app:layout_constraintVertical_bias="0.0"
-        tools:ignore="UsingOnClickInXml" />
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
