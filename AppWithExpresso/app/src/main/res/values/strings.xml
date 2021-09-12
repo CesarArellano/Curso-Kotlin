@@ -7,5 +7,4 @@
     <string name="apellidoEditText">Ingrese su apellido</string>
     <string name="nombreEditText">Ingrese su nombre</string>
     <string name="appTitle">UI con Expresso</string>
-    <string name="registerButton">Registrar</string>
 </resources>
