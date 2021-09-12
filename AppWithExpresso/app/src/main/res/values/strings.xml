@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">AppWithExpresso</string>
+    <string name="registerButton">Registrar</string>
+    <string name="femaleRB">Femenino</string>
+    <string name="maleRB">Masculino</string>
+    <string name="genreLabel">Seleccione su género</string>
+    <string name="apellidoEditText">Ingrese su apellido</string>
+    <string name="nombreEditText">Ingrese su nombre</string>
+    <string name="appTitle">UI con Expresso</string>
+    <string name="registerButton">Registrar</string>
+</resources>
