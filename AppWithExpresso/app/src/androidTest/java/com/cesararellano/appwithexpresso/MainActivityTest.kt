@@ -28,6 +28,7 @@ class MainActivityTest {
         onView( withId(R.id.nombreEditText) ) // Métodos de ViewMatchers
             .perform(typeText("Cesar"), closeSoftKeyboard())
 
+
         onView(withId(R.id.maleRB))
             .perform(click())
 
