@@ -9,9 +9,10 @@
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView"
         android:name="com.cesararellano.fragmentsexample.ModificadorFragment"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="237dp" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout="@layout/modificador_fragment" />
 </androidx.constraintlayout.widget.ConstraintLayout>
