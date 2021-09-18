@@ -36,7 +36,7 @@ class MainActivityTest {
             .perform(click())
 
         //onView( withId(R.id.apellidoEditText) )
-        //    .perform(typeText("Arellano"), closeSoftKeyboard())
+        //   .perform(typeText("Arellano"), closeSoftKeyboard())
         //    .check(matches(isDisplayed()))
 
         intending( hasExtraWithKey("NAME"))

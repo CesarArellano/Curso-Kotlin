@@ -1,9 +1,8 @@
 package com.cesararellano.appwithexpresso
 
-object RegistrationUtil {
+class RegistrationUtil {
 
-    private val existingUsers = listOf("Peter", "Carl")
-
+    private val existingUsers = listOf("Esteban", "Orlando")
     /**
      * the input is not valid if...
      * ...the username/password is empty

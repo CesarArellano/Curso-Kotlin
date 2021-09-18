@@ -1,69 +1,71 @@
 package com.cesararellano.appwithexpresso
 
-//import org.junit.Assert.*
-
-import com.google.common.truth.Truth.assertThat
+import org.junit.Assert.*
 import org.junit.Test
 
 class RegistrationUtilTest {
 
+    private val registrationUtil = RegistrationUtil()
+
     @Test
     fun `empty username returns false`() {
-        val result = RegistrationUtil.validateRegistrationInput(
+        val result = registrationUtil.validateRegistrationInput(
             "",
             "123",
             "123"
         )
-        assertThat(result).isFalse()
+        assertEquals(result, false)
     }
 
     @Test
     fun `valid username and correctly repeated password returns true`() {
-        val result = RegistrationUtil.validateRegistrationInput(
+        val result = registrationUtil.validateRegistrationInput(
             "Philipp",
-            "123",
-            "123"
+            "12345678",
+            "12345678"
         )
-        assertThat(result).isTrue()
+        println(result)
+        assertEquals(result, true)
     }
 
     @Test
     fun `username already exists returns false`() {
-        val result = RegistrationUtil.validateRegistrationInput(
+        val result = registrationUtil.validateRegistrationInput(
             "Carl",
             "123",
             "123"
         )
-        assertThat(result).isFalse()
+        assertEquals(result, false)
     }
 
     @Test
     fun `incorrectly confirmed password returns false`() {
-        val result = RegistrationUtil.validateRegistrationInput(
+        val result = registrationUtil.validateRegistrationInput(
             "Philipp",
             "123456",
             "abcdefg"
         )
-        assertThat(result).isFalse()
+        assertEquals(result, false)
     }
 
     @Test
     fun `empty password returns false`() {
-        val result = RegistrationUtil.validateRegistrationInput(
+        val result = registrationUtil.validateRegistrationInput(
             "Philipp",
             "",
             ""
         )
-        assertThat(result).isFalse()
+
+        assertEquals(result, false)
     }
 
     @Test
-    fun `less than 2 digit password returns false`() {
-        val result = RegistrationUtil.validateRegistrationInput(
+    fun `less than 8 characters in password returns false`() {
+        val result = registrationUtil.validateRegistrationInput(
             "Philipp",
-            "abcdefg5",
-            "abcdefg5"
+            "abcdefg",
+            "abcdefg"
         )
-        assertThat(result).isFalse()
+        assertEquals(result, false)
     }
 }

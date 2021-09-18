@@ -6,5 +6,6 @@
     <string name="genreLabel">Seleccione su género</string>
     <string name="apellidoEditText">Ingrese su apellido</string>
     <string name="nombreEditText">Ingrese su nombre</string>
-    <string name="appTitle">UI con Expresso</string>
+    <string name="appTitle">UI Testing | Expresso</string>
+    <string name="activityDataTitle">Activity Data</string>
 </resources>
