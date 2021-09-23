@@ -10,6 +10,9 @@ class MainActivity : AppCompatActivity(), ModificadorFragment.OnModifiedTextList
     }
 
     override fun onPressedButton(text: String, textSize: Int) {
-        println("$text hola")
+        val textFragment = supportFragmentManager.findFragmentById(R.id.textFragment2) as TextFragment
+        textFragment.changeText(text, textSize)
+
+
     }
 }

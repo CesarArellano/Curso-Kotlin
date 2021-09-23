@@ -19,7 +19,7 @@
         tools:layout="@layout/modificador_fragment" />
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentContainerView2"
+        android:id="@+id/textFragment2"
         android:name="com.cesararellano.fragmentsexample.TextFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
