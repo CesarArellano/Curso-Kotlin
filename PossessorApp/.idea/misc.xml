@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/cesar/Documents/Cursos/CursoKotlin/PossessorApp/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Users/cesar/Documents/Cursos/CursoKotlin/PossessorApp/app/src/main/res/layout/fragment_thing.xml" value="0.21603260869565216" />
+        <entry key="..\:/Users/cesar/Documents/Cursos/CursoKotlin/PossessorApp/app/src/main/res/layout/thing_fragment.xml" value="0.5" />
         <entry key="..\:/Users/cesar/Documents/Cursos/CursoKotlin/PossessorApp/app/src/main/res/layout/thing_fragmentr.xml" value="0.33" />
       </map>
     </option>
