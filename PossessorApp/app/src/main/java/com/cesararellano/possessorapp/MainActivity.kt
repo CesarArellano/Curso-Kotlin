@@ -2,8 +2,9 @@ package com.cesararellano.possessorapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), ThingsTableFragment.ThingTableInterface {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -15,5 +16,11 @@ class MainActivity : AppCompatActivity() {
                 .add( R.id.fragment_container, fragment )
                 .commit()
         }
+    }
+
+    override fun onSelectedThing(thing: ThingDataClass) {
+        Toast.makeText(this, "${ thing.thingName } fue seleccionada", Toast.LENGTH_SHORT).show()
+        val fragment = ThingFragment()
+        supportFragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit()
     }
 }

@@ -5,8 +5,8 @@ import java.util.*
 
 class ThingsTableViewModel: ViewModel() {
     val inventory = mutableListOf<ThingDataClass>()
-    val names = arrayOf("Teléfono", "Pan", "Playera")
-    val adjectives = arrayOf("Gris", "Suave", "Cómoda")
+    private val names = arrayOf("Teléfono", "Pan", "Playera")
+    private val adjectives = arrayOf("Gris", "Suave", "Cómoda")
 
     init {
         for( i in 0 until 100) {
@@ -14,7 +14,7 @@ class ThingsTableViewModel: ViewModel() {
             val randomName = names.random()
             val randomAdjective = adjectives.random()
             val randomPrice = Random().nextInt(100)
-            thing.thingName = randomName
+            thing.thingName = "$randomName - $randomAdjective"
             thing.pesosValue = randomPrice
             inventory += thing
         }

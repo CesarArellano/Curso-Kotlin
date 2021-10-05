@@ -1,6 +1,7 @@
 package com.cesararellano.possessorapp
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -16,9 +17,24 @@ private const val TAG = "ThingsTableFragment"
 class ThingsTableFragment: Fragment() {
     private lateinit var  thingRecyclerView: RecyclerView
     private var adapter: ThingAdapter? = null
+    private var interfaceCallback:ThingTableInterface? = null
 
     private val thingTableViewModel: ThingsTableViewModel by lazy {
         ViewModelProvider(this).get(ThingsTableViewModel::class.java)
+    }
+
+    interface ThingTableInterface {
+        fun onSelectedThing( thing: ThingDataClass )
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        interfaceCallback = context as ThingTableInterface?
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        interfaceCallback = null
     }
 
     private fun updateUI() {
@@ -50,7 +66,7 @@ class ThingsTableFragment: Fragment() {
         }
     }
 
-    private inner class ThingHolder(view: View): RecyclerView.ViewHolder(view) {
+    private inner class ThingHolder(view: View): RecyclerView.ViewHolder(view), View.OnClickListener {
         private lateinit var thing: ThingDataClass
 
         val nameTextView: TextView = itemView.findViewById(R.id.nameLabel)
@@ -61,6 +77,14 @@ class ThingsTableFragment: Fragment() {
             this.thing = thing
             nameTextView.text = this.thing.thingName
             priceTextView.text = "$${ thing.pesosValue }"
+        }
+
+        init {
+            itemView.setOnClickListener(this)
+        }
+
+        override fun onClick(p0: View?) {
+            interfaceCallback?.onSelectedThing(thing)
         }
     }
 
