@@ -4,7 +4,7 @@ import android.os.Parcel
 import android.os.Parcelable
 import java.util.*
 
-class ThingDataClass(): Parcelable {
+class Thing(): Parcelable {
     var thingName: String = ""
     var pesosValue: Int = 0
     var serialNumber: UUID = UUID.randomUUID()
@@ -30,12 +30,12 @@ class ThingDataClass(): Parcelable {
         dest.writeSerializable(creationDate)
     }
 
-    companion object CREATOR : Parcelable.Creator<ThingDataClass> {
-        override fun createFromParcel(source: Parcel): ThingDataClass {
-            return ThingDataClass(source)
+    companion object CREATOR : Parcelable.Creator<Thing> {
+        override fun createFromParcel(source: Parcel): Thing {
+            return Thing(source)
         }
 
-        override fun newArray(size: Int): Array<ThingDataClass?> {
+        override fun newArray(size: Int): Array<Thing?> {
             return arrayOfNulls(size)
         }
     }

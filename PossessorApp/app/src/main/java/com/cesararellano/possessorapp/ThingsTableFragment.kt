@@ -24,7 +24,7 @@ class ThingsTableFragment: Fragment() {
     }
 
     interface ThingTableInterface {
-        fun onSelectedThing( thing: ThingDataClass )
+        fun onSelectedThing( thing: Thing )
     }
 
     override fun onAttach(context: Context) {
@@ -67,13 +67,13 @@ class ThingsTableFragment: Fragment() {
     }
 
     private inner class ThingHolder(view: View): RecyclerView.ViewHolder(view), View.OnClickListener {
-        private lateinit var thing: ThingDataClass
+        private lateinit var thing: Thing
 
         val nameTextView: TextView = itemView.findViewById(R.id.nameLabel)
         val priceTextView: TextView = itemView.findViewById(R.id.priceLabel)
 
         @SuppressLint("SetTextI18n")
-        fun binding(thing:ThingDataClass) {
+        fun binding(thing:Thing) {
             this.thing = thing
             nameTextView.text = this.thing.thingName
             priceTextView.text = "$${ thing.pesosValue }"
@@ -88,7 +88,7 @@ class ThingsTableFragment: Fragment() {
         }
     }
 
-    private inner class ThingAdapter(var inventary: List<ThingDataClass>):RecyclerView.Adapter<ThingHolder>() {
+    private inner class ThingAdapter(var inventary: List<Thing>):RecyclerView.Adapter<ThingHolder>() {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ThingHolder {
             val holder = layoutInflater.inflate(R.layout.thing_layout,parent,false)
             return ThingHolder(holder)

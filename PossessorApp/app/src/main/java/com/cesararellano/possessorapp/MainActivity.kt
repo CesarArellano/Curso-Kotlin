@@ -18,9 +18,14 @@ class MainActivity : AppCompatActivity(), ThingsTableFragment.ThingTableInterfac
         }
     }
 
-    override fun onSelectedThing(thing: ThingDataClass) {
+    override fun onSelectedThing(thing: Thing) {
         Toast.makeText(this, "${ thing.thingName } fue seleccionada", Toast.LENGTH_SHORT).show()
-        val fragment = ThingFragment()
-        supportFragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit()
+        // val fragment = ThingFragment()
+        val fragment = ThingFragment.newInstance(thing)
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragment_container, fragment)
+            .addToBackStack(null)
+            .commit()
     }
 }
