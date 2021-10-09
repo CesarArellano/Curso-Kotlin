@@ -1,6 +1,8 @@
 package com.cesararellano.possessorapp
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -22,6 +24,40 @@ class ThingFragment : Fragment() {
         thing = arguments?.getParcelable("RECEIVED_THING")!!
     }
 
+    override fun onStart() {
+        super.onStart()
+
+        val textObservable = object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                when {
+                    s.hashCode() == nameField.text.hashCode() -> {
+                        thing.thingName = s.toString()
+                    }
+                    s.hashCode() == priceField.text.hashCode() -> {
+                        if(s != null) {
+                            if(s.isEmpty()) {
+                                thing.pesosValue = 0
+                            } else {
+                                thing.pesosValue = s.toString().toInt()
+                            }
+                        }
+                    }
+                    else -> {
+                        thing.serialNumber = s.toString()
+                    }
+                }
+            }
+
+            override fun afterTextChanged(p0: Editable?) {}
+        }
+
+        nameField.addTextChangedListener(textObservable)
+        priceField.addTextChangedListener(textObservable)
+        serialNumberField.addTextChangedListener(textObservable)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -36,7 +72,7 @@ class ThingFragment : Fragment() {
 
         nameField.setText( thing.thingName )
         priceField.setText( thing.pesosValue.toString() )
-        serialNumberField.setText( thing.serialNumber.toString() )
+        serialNumberField.setText( thing.serialNumber )
         dateLabel.text = thing.creationDate.toString()
 
         return view
