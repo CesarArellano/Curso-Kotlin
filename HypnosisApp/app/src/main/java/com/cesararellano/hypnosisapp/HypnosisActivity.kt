@@ -7,6 +7,7 @@ class HypnosisActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_hypnosis)
-        val hypnosis = HypnosisView(this)
+        // val hypnosis = HypnosisView(this)
+        supportActionBar?.hide()
     }
 }
