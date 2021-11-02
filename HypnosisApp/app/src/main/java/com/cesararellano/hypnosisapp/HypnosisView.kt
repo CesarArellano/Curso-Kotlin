@@ -2,22 +2,27 @@ package com.cesararellano.hypnosisapp
 
 import android.content.Context
 import android.graphics.*
+import android.graphics.fonts.FontFamily
 import android.util.AttributeSet
 import android.util.Log
+import android.util.SizeF
 import android.view.MotionEvent
 import android.view.View
+import kotlin.math.max
 import kotlin.math.min
 import kotlin.random.Random
 
 private const val TAG = "HypnosisView"
 class HypnosisView( context: Context, attrs: AttributeSet? = null ): View(context, attrs) {
+    private lateinit var tapCoors: PointF
+
     private val inlinePaint = Paint().apply {
         color = Color.RED
         strokeWidth = 10F
     }
     private val circlePaint = Paint().apply {
         color = Color.BLACK
-        strokeWidth = 10F
+        strokeWidth = 20F
         style = Paint.Style.STROKE
 
     }
@@ -28,14 +33,32 @@ class HypnosisView( context: Context, attrs: AttributeSet? = null ): View(contex
     }
 
     private fun drawCircle(canvas: Canvas) {
-        val radius = min(width, height)
-        canvas.drawCircle(width.toFloat() / 2, height.toFloat() / 2, (radius / 2).toFloat() - 100F, circlePaint)
+        val viewSize = SizeF( measuredWidth.toFloat(), measuredHeight.toFloat() )
+        val maxRadius = max(viewSize.width, viewSize.height)
+        for( currentRadius in maxRadius.toInt() downTo 0 step 70 ) {
+            canvas.drawCircle(viewSize.width / 2, viewSize.height /2, currentRadius.toFloat(), circlePaint)
+        }
+    }
+
+    private fun drawText(canvas: Canvas) {
+        val text = "¿Tienes mucho sueño?"
+        val textRectangle = Rect()
+        textPaint.getTextBounds(text, 0, text.length, textRectangle)
+        canvas.drawText(text, ( width - textRectangle.width()) / 2F, height / 2F, textPaint )
+    }
+
+    private val textPaint = Paint().apply {
+        color = Color.BLACK
+        textSize = 100F
+        typeface = Typeface.create( Typeface.SANS_SERIF, Typeface.BOLD)
+
     }
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        drawCrossOut(canvas)
+        //drawCrossOut(canvas)
         drawCircle(canvas)
+        drawText(canvas)
     }
 
 
@@ -46,10 +69,13 @@ class HypnosisView( context: Context, attrs: AttributeSet? = null ): View(contex
             MotionEvent.ACTION_DOWN -> {
                 inlinePaint.color = Color.argb(255, Random.nextInt(255), Random.nextInt(255), Random.nextInt(255))
                 circlePaint.color = Color.argb(255, Random.nextInt(255), Random.nextInt(255), Random.nextInt(255))
+                tapCoors = tapPoint
                 invalidate()
                 "ACTION_DOWN"
             }
             MotionEvent.ACTION_MOVE -> {
+                this.x += tapPoint.x
+                this.y += tapPoint.y
                 "ACTION_MOVE"
             }
             MotionEvent.ACTION_UP -> {
