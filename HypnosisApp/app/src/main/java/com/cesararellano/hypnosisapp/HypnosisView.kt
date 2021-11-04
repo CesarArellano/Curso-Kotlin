@@ -2,14 +2,12 @@ package com.cesararellano.hypnosisapp
 
 import android.content.Context
 import android.graphics.*
-import android.graphics.fonts.FontFamily
 import android.util.AttributeSet
 import android.util.Log
 import android.util.SizeF
 import android.view.MotionEvent
 import android.view.View
 import kotlin.math.max
-import kotlin.math.min
 import kotlin.random.Random
 
 private const val TAG = "HypnosisView"
@@ -64,8 +62,8 @@ class HypnosisView( context: Context, attrs: AttributeSet? = null ): View(contex
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
         val tapPoint = PointF(event.x, event.y)
-        var action = ""
-        action = when(event.action) {
+
+        val action = when(event.action) {
             MotionEvent.ACTION_DOWN -> {
                 inlinePaint.color = Color.argb(255, Random.nextInt(255), Random.nextInt(255), Random.nextInt(255))
                 circlePaint.color = Color.argb(255, Random.nextInt(255), Random.nextInt(255), Random.nextInt(255))
@@ -74,8 +72,8 @@ class HypnosisView( context: Context, attrs: AttributeSet? = null ): View(contex
                 "ACTION_DOWN"
             }
             MotionEvent.ACTION_MOVE -> {
-                this.x += tapPoint.x
-                this.y += tapPoint.y
+                this.x += tapPoint.x - tapCoors.x
+                this.y += tapPoint.y - tapCoors.y
                 "ACTION_MOVE"
             }
             MotionEvent.ACTION_UP -> {
